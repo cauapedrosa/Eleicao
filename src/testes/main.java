@@ -5,15 +5,11 @@ import model.FachadaCartorioEleitoral;
 
 public class main {
 
-	public static void main(String[] args){
+	public static void main(String[] args) throws ExcecaoZonaEleitoralExistente {
 		FachadaCartorioEleitoral cartorio = new FachadaCartorioEleitoral();
-		try{
-			cartorio.cadastraZonaEleitoral(101, "Estreito");
-			System.out.println("Numero de Zonas Cadastradas 1: " + cartorio.getNumero());
-			cartorio.cadastraZonaEleitoral(101, "Estreito");
-			System.out.println("Numero de Zonas Cadastradas 2: " + cartorio.getNumero());
-		}catch (ExcecaoZonaEleitoralExistente e){
-			System.out.println("Gerou Excecao!" + e.getMessage());
-		}
+		cartorio.cadastraZonaEleitoral(101, "Estreito");
+		System.out.println("Numero de Zonas Cadastradas 1: " + cartorio.numeroDeZonasEleitorais());
+		cartorio.cadastraZonaEleitoral(101, "Estreito");
+		System.out.println("Numero de Zonas Cadastradas 2: " + cartorio.numeroDeZonasEleitorais());
 	}
 }

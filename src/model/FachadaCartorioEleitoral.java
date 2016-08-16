@@ -2,29 +2,29 @@ package model;
 
 import java.util.ArrayList;
 
-import exceptions.ExcecaoZonaEleitoralExistente;
-
 public class FachadaCartorioEleitoral {
-
-	private ArrayList<ZonaEleitoral> zonas;
+	private ArrayList<Zona> zonas;
+	private ArrayList<Eleitor> eleitores;
+	private ArrayList<Secao> secoes;
 
 	public FachadaCartorioEleitoral() {
-		this.zonas = new ArrayList<ZonaEleitoral>();
+		this.zonas = new ArrayList<Zona>();
+		this.secoes = new ArrayList<Secao>();
+		this.eleitores = new ArrayList<Eleitor>();
 	}
 
-	public void cadastraZonaEleitoral(int numero, String localizacao) throws ExcecaoZonaEleitoralExistente {
-		ZonaEleitoral zonaExistente = getZona(numero);
-		if (zonaExistente == null) {
-			ZonaEleitoral zonaNova = new ZonaEleitoral(numero, localizacao);
-			this.zonas.add(zonaNova);
-		} else
-			throw new ExcecaoZonaEleitoralExistente();
+	public void cadastraZonaEleitoral(int numeroZonaEleitoral, String localizacao) {
+		Zona zona = getZona(numeroZonaEleitoral);
+		if (zona == null) {
+			zona = new Zona(numeroZonaEleitoral, localizacao);
+			this.zonas.add(zona);
+		}
 	}
 
-	public ZonaEleitoral getZona(int numero) {
+	public Zona getZona(int numeroZonaEleitoral) {
 		for (int cont = 0; cont < this.zonas.size(); cont++) {
-			ZonaEleitoral zona = this.zonas.get(cont);
-			if (zona.getNumero() == numero) {
+			Zona zona = this.zonas.get(cont);
+			if (zona.getNumero() == numeroZonaEleitoral) {
 				return zona;
 			}
 		}
@@ -32,19 +32,32 @@ public class FachadaCartorioEleitoral {
 	}
 
 	public int numeroDeZonasEleitorais() {
-		return this.zonas.size();
+		return zonas.size();
 	}
 
-	public String getNumero(){
+	public int cadastrarSecao(int numeroZona) {
+		Zona zona = getZona(numeroZona);
+		if (zona != null) {
+			Secao secao = zona.criarNovaSecao();
+			this.secoes.add(secao);
+			return secao.getNumero();
+		} else {
+			return 0;
+		}
+	}
+
+	public Secao getSecao(int numeroSecao) {
+		for (int cont = 0; cont < this.secoes.size(); cont++) {
+			Secao secao = this.secoes.get(cont);
+			if (secao.getNumero() == numeroSecao) {
+				return secao;
+			}
+		}
 		return null;
 	}
-	
-	public int cadastraNovaSecaoEmUmaZona(int numeroZona) {
-		ZonaEleitoral zona = getZona(numeroZona);
-		if (zona != null) {
-			return zona.criaNovaSecao();
-		} else
-			return 0;
+
+	public int numeroDeSecoes() {
+		return this.secoes.size();
 	}
 
 }

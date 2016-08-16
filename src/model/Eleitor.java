@@ -13,7 +13,6 @@ public class Eleitor {
 		this.cpf = cpf;
 		this.nome = nome;
 		this.titulo = titulo;
-
 	}
 
 	public void setSecao(Secao secao) {
