@@ -2,6 +2,8 @@ package model;
 
 import java.util.ArrayList;
 
+import exceptions.ExcecaoZonaEleitoralExistente;
+
 public class FachadaCartorioEleitoral {
 
 	private ArrayList<ZonaEleitoral> zonas;
@@ -10,18 +12,19 @@ public class FachadaCartorioEleitoral {
 		this.zonas = new ArrayList<ZonaEleitoral>();
 	}
 
-	public void cadastraZonaEleitoral(int numeroZonaEleitoral, String localizacao) {
-		ZonaEleitoral zona = getZona(numeroZonaEleitoral);
-		if (zona == null) {
-			zona = new ZonaEleitoral(numeroZonaEleitoral, localizacao);
-			this.zonas.add(zona);
-		}
+	public void cadastraZonaEleitoral(int numero, String localizacao) throws ExcecaoZonaEleitoralExistente {
+		ZonaEleitoral zonaExistente = getZona(numero);
+		if (zonaExistente == null) {
+			ZonaEleitoral zonaNova = new ZonaEleitoral(numero, localizacao);
+			this.zonas.add(zonaNova);
+		} else
+			throw new ExcecaoZonaEleitoralExistente();
 	}
 
-	public ZonaEleitoral getZona(int numeroZonaEleitoral) {
+	public ZonaEleitoral getZona(int numero) {
 		for (int cont = 0; cont < this.zonas.size(); cont++) {
 			ZonaEleitoral zona = this.zonas.get(cont);
-			if (zona.getNumero() == numeroZonaEleitoral) {
+			if (zona.getNumero() == numero) {
 				return zona;
 			}
 		}
@@ -32,6 +35,10 @@ public class FachadaCartorioEleitoral {
 		return this.zonas.size();
 	}
 
+	public String getNumero(){
+		return null;
+	}
+	
 	public int cadastraNovaSecaoEmUmaZona(int numeroZona) {
 		ZonaEleitoral zona = getZona(numeroZona);
 		if (zona != null) {

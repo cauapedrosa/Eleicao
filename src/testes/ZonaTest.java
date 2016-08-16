@@ -6,7 +6,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import model.FachadaCartorioEleitoral;
-import model.ZonaEleitoral;
 
 public class ZonaTest {
 
