@@ -1,6 +1,5 @@
 package controller;
 
-import model.FachadaVerificacoes;
 import view.GUI;
 
 public class Main {
@@ -55,7 +54,6 @@ public class Main {
 			if (opcaoSelecionada != null) {
 				switch (opcaoSelecionada) {
 				case "Verificar Zona":
-					FachadaVerificacoes.verificarZonas();
 					break;
 				case "Verificar Seção":
 					break;

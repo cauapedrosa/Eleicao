@@ -6,8 +6,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import controller.FachadaCartorio;
+import exceptions.ExceptionJaCadastrado;
 
-public class ZonaTest {
+public class ZonaTeste {
 
 	private FachadaCartorio cartorio;
 
@@ -18,11 +19,15 @@ public class ZonaTest {
 	}
 
 	@Test
-	public void cadastraZona101DuasVezes() throws Exception {
-		cartorio.cadastraZona(101, "Estreito");
-		assertEquals(1, cartorio.numeroDeZonas());
-		cartorio.cadastraZona(101, "Estreito");
-		assertEquals(1, cartorio.numeroDeZonas());
+	public void cadastraZona101DuasVezes() {
+		try {
+			cartorio.cadastraZona(101, "Estreito");
+			assertEquals(1, cartorio.numeroDeZonas());
+			cartorio.cadastraZona(101, "Estreito");
+		} catch (ExceptionJaCadastrado e) {
+			assertEquals(1, cartorio.numeroDeZonas());
+
+		}
 	}
 
 	@Test
