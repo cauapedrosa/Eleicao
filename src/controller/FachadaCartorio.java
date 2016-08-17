@@ -87,15 +87,18 @@ public class FachadaCartorio {
 
 	public void cadastrarEleitor(String nome, int cpf, int titulo) throws ExceptionJaCadastrado {
 		Eleitor eleitor = getEleitor(cpf);
-		if (eleitor == null) {
-			eleitor = new Eleitor(nome, cpf, titulo);
-			this.eleitores.add(eleitor);
-		} else {
-			throw new ExceptionJaCadastrado("CPF já cadastrado");
-		}
+//		for (int i = 0; i < eleitores.size(); i++) {
+			if (!eleitores.contains(eleitor)) {
+				eleitor = new Eleitor(nome, cpf, titulo);
+				this.eleitores.add(eleitor);
+			} else {
+				throw new ExceptionJaCadastrado("CPF já cadastrado");
+			}	
+//		}
+		
 	}
 
-	private Eleitor getEleitor(int titulo) {
+	public Eleitor getEleitor(float titulo) {
 		for (int cont = 0; cont < this.eleitores.size(); cont++) {
 			Eleitor eleitor = this.eleitores.get(cont);
 			if (eleitor.getTitulo() == titulo) {
@@ -103,6 +106,14 @@ public class FachadaCartorio {
 			}
 		}
 		return null;
+	}
+
+	public void atribuirEleitorAZona(Eleitor eleitor, Zona zona) {
+		eleitor.setZona(zona);
+	}
+
+	public void atribuirEleitorASecao(Eleitor eleitor, Secao secao) {
+		eleitor.setSecao(secao);
 	}
 
 	public int numeroDeZonas() {

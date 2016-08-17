@@ -5,6 +5,7 @@ public class Eleitor {
 	private String nome;
 	private int cpf;
 	private int titulo;
+	private Zona zona;
 	private Secao secao;
 	private String endereco;
 	private String municipio;
@@ -13,6 +14,10 @@ public class Eleitor {
 		this.nome = nome;
 		this.cpf = cpf;
 		this.titulo = titulo;
+	}
+
+	public void setZona(Zona zona) {
+		this.zona = zona;
 	}
 
 	public void setSecao(Secao secao) {
@@ -31,12 +36,20 @@ public class Eleitor {
 		return nome;
 	}
 
-	public int getCpf() {
+	public float getCpf() {
 		return cpf;
 	}
 
-	public int getTitulo() {
+	public float getTitulo() {
 		return titulo;
+	}
+
+	public int getNumZona() {
+		return zona.getNumero();
+	}
+
+	public Zona getZona() {
+		return zona;
 	}
 
 	public Secao getSecao() {
@@ -50,4 +63,19 @@ public class Eleitor {
 	public String getMunicipio() {
 		return municipio;
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Eleitor other = (Eleitor) obj;
+		if (titulo != other.titulo)
+			return false;
+		return true;
+	}
+
 }

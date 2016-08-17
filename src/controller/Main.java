@@ -30,7 +30,7 @@ public class Main {
 					cadastrarZona();
 					break;
 				case "Cadastrar Seção":
-					cadastraSecao();
+					cadastrarSecao();
 					break;
 				default:
 					loopFlag = false;
@@ -84,7 +84,7 @@ public class Main {
 		System.out.println("# de Zonas aumentado para: " + fachada.numeroDeZonas());
 	}
 
-	private static void cadastraSecao() throws Exception {
+	private static void cadastrarSecao() throws Exception {
 		System.out.println("CADASTRANDO SEÇÃO");
 
 		int numero = GUI.inputInt("Digite o Numero da Seção Eleitoral");

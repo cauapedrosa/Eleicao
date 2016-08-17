@@ -8,7 +8,7 @@ import org.junit.Test;
 import controller.FachadaCartorio;
 import exceptions.ExceptionJaCadastrado;
 
-public class ZonaTeste {
+public class TesteZona {
 
 	private FachadaCartorio cartorio;
 
