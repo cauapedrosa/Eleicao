@@ -29,4 +29,9 @@ public class Zona {
 		this.secoes.add(secao);
 		return secao;
 	}
+
+	public String toString() {
+
+		return "toString: " + numero + localizacao + secoes.size() + numeroSecao;
+	}
 }

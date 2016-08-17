@@ -4,12 +4,10 @@ import java.util.ArrayList;
 
 public class Secao {
 	private int numero;
-	private Zona zona;
 	private ArrayList<Eleitor> eleitores;
 
 	public Secao(int numero, Zona zona) {
 		this.numero = numero;
-		this.zona = zona;
 		this.eleitores = new ArrayList<Eleitor>();
 	}
 

@@ -9,9 +9,9 @@ public class Eleitor {
 	private String endereco;
 	private String municipio;
 
-	public Eleitor(int cpf, String nome, int titulo) {
-		this.cpf = cpf;
+	public Eleitor(String nome, int cpf, int titulo) {
 		this.nome = nome;
+		this.cpf = cpf;
 		this.titulo = titulo;
 	}
 
