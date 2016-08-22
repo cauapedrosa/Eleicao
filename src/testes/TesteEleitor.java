@@ -8,7 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import controller.FachadaCartorio;
-import exceptions.ExceptionJaCadastrado;
+import exceptions.ExceptionMsg;
 import model.Eleitor;
 import model.Zona;
 
@@ -24,7 +24,7 @@ public class TesteEleitor {
 	}
 
 	@Test
-	public void CadastraEleitor() throws ExceptionJaCadastrado {
+	public void CadastraEleitor() throws ExceptionMsg {
 		cartorio.cadastrarEleitor("Carol", 173043550, 113352414);
 		assertEquals(1, cartorio.numeroDeEleitores());
 	}
@@ -34,7 +34,7 @@ public class TesteEleitor {
 		try {
 			cartorio.cadastrarEleitor("Carol", 173043550, 113352414);
 			cartorio.cadastrarEleitor("Jorge", 173043550, 256128806);
-		} catch (ExceptionJaCadastrado e) {
+		} catch (ExceptionMsg e) {
 			assertEquals(1, cartorio.numeroDeEleitores());
 		}
 	}
@@ -44,13 +44,13 @@ public class TesteEleitor {
 		try {
 			cartorio.cadastrarEleitor("Carol", 173043550, 113352414);
 			cartorio.cadastrarEleitor("Jorge", 173043550, 256128806);
-		} catch (ExceptionJaCadastrado e) {
+		} catch (ExceptionMsg e) {
 			assertEquals(1, cartorio.numeroDeEleitores());
 		}
 	}
 
 	@Test
-	public void AtribuiEleitorAZona() throws ExceptionJaCadastrado {
+	public void AtribuiEleitorAZona() throws ExceptionMsg {
 		cartorio.cadastrarEleitor("Carol", 173043550, 113352414);
 		Eleitor eleitor = cartorio.getEleitor(113352414);
 		cartorio.cadastraZona(101, "UFSC");
@@ -60,7 +60,7 @@ public class TesteEleitor {
 	}
 
 	@Test
-	public void AtribuiEnderecoAEleitor() throws ExceptionJaCadastrado {
+	public void AtribuiEnderecoAEleitor() throws ExceptionMsg {
 		cartorio.cadastrarEleitor("Carol", 173043550, 113352414);
 	}
 }

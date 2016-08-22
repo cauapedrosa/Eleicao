@@ -16,6 +16,13 @@ public class Eleitor {
 		this.titulo = titulo;
 	}
 
+	@Override
+	public String toString() {
+		return String.format(
+				"Nome: %s\n CPF: %d\n Titulo: %d\n Zona: %d\n Secao %d\n Endereco: %s\n Municipio %s",
+				nome, cpf, titulo, zona.toString(), secao, endereco, municipio);
+	}
+
 	public void setZona(Zona zona) {
 		this.zona = zona;
 	}

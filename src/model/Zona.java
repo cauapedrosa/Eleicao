@@ -30,8 +30,9 @@ public class Zona {
 		return secao;
 	}
 
+	@Override
 	public String toString() {
-
-		return "toString: " + numero + localizacao + secoes.size() + numeroSecao;
+		return String.format("Numero da Zona: %d\nLocalizacao: %s\nSecoes nesta Zona:" + numero
+				+ localizacao + secoes.size());
 	}
 }

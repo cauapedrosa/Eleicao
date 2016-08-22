@@ -17,4 +17,18 @@ public class Partido {
 		return numero;
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Partido other = (Partido) obj;
+		if (numero != other.numero)
+			return false;
+		return true;
+	}
+
 }

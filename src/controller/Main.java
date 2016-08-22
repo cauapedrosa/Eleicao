@@ -1,9 +1,12 @@
 package controller;
 
+import exceptions.ExceptionEleitorInexistente;
+import exceptions.ExceptionMsg;
 import view.GUI;
 
 public class Main {
-	private static FachadaCartorio fachada = new FachadaCartorio();
+
+	public static FachadaCartorio fachada = new FachadaCartorio();
 
 	public static void main(String[] args) throws Exception {
 
@@ -46,31 +49,51 @@ public class Main {
 
 	private static void verificarCadastros() {
 
-		boolean loopFlagVerificar = true;
-		while (loopFlagVerificar) {
+		String opcaoSelecionada = GUI.verificaMenu();
 
-			String opcaoSelecionada = GUI.verificaMenu();
-
-			if (opcaoSelecionada != null) {
-				switch (opcaoSelecionada) {
-				case "Verificar Zona":
-					break;
-				case "Verificar Seção":
-					break;
-				case "Verificar Eleitor":
-					break;
-				case "Verificar Partido":
-					break;
-				case "Verificar Candidato":
-					break;
-				default:
-					loopFlagVerificar = false;
-					break;
-				}
-			} else {
-				loopFlagVerificar = false;
-			}
+		switch (opcaoSelecionada) {
+		case "Verificar Zona":
+			verificarZona();
+			break;
+		case "Verificar Seção":
+			verificarSecao();
+			break;
+		case "Verificar Eleitor":
+			verificarEleitor();
+			break;
+		case "Verificar Partido":
+			verificarPartido();
+			break;
+		case "Verificar Candidato":
+			verificarCandidato();
+			break;
+		default:
+			opcaoSelecionada = null;
+			break;
 		}
+	}
+
+	private static void verificarSecao() {
+		// TODO Auto-generated method stub
+
+	}
+
+	private static void verificarZona() {
+		// TODO Auto-generated method stub
+	}
+
+	private static void verificarEleitor() {
+		// TODO Auto-generated method stub
+
+	}
+
+	private static void verificarPartido() {
+		// TODO Auto-generated method stub
+
+	}
+
+	private static void verificarCandidato() {
+		// TODO Auto-generated method stub
 
 	}
 
@@ -87,32 +110,41 @@ public class Main {
 	private static void cadastrarSecao() throws Exception {
 		System.out.println("CADASTRANDO SEÇÃO");
 
-		int numero = GUI.inputInt("Digite o Numero da Seção Eleitoral");
+		int numero = GUI
+				.inputInt("Digite o Número da Zona Eleitoral emque deseja cadastrar uma Seção");
 		fachada.cadastrarSecao(numero);
-		System.out.println("# de Seções aumentado para: " + fachada.numeroDeSecoes());
+		System.out.printf("Num de Seções da zona %d aumentado para: " + fachada.numeroDeSecoes(),
+				numero);
 
 	}
 
 	private static void cadastrarEleitor() throws Exception {
 		System.out.println("CADASTRANDO ELEITOR");
 
-		String nome = GUI.inputStr("Digite o Numero da Seção Eleitoral");
-		int cpf = GUI.inputInt("Digite o Numero da Seção Eleitoral");
-		int titulo = GUI.inputInt("Digite o Numero da Seção Eleitoral");
+		String nome = GUI.inputStr("Digite o Nome do Eleitor");
+		int cpf = GUI.inputInt("Digite o CPF do Eleitor");
+		int titulo = GUI.inputInt("Digite o Titulo do Eleitor");
 
 		fachada.cadastrarEleitor(nome, cpf, titulo);
 	}
 
-	private static void cadastraPartido() {
+	private static void cadastraPartido() throws ExceptionMsg {
 		System.out.println("CADASTRANDO PARTIDO");
-		// TODO Auto-generated method stub
 
+		String nomePartido = GUI.inputStr("Digite o Nome do Partido");
+		int numeroPartido = GUI.inputInt("Digite o Numero do Partido");
+
+		if (numeroPartido > 0 && nomePartido != null)
+			fachada.cadastrarPartido(numeroPartido, nomePartido);
 	}
 
-	private static void cadastraCandidato() {
+	private static void cadastraCandidato() throws Exception {
 		System.out.println("CADASTRANDO CANDIDATO");
-		// TODO Auto-generated method stub
-
+		int cpf = GUI.inputInt("Digite o CPF do Candidato");
+		String nome = GUI.inputStr("Digite o Nome do Candidato");
+		int numPartido = GUI.inputInt("Digite o Numero do Partido do Candidato");
+		int numero = GUI.inputInt("Digite o Numero de Candidato do Candidato");
+		fachada.cadastrarCandidato(cpf, nome, numPartido, numero);
 	}
 
 }

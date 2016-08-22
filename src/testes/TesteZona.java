@@ -6,7 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import controller.FachadaCartorio;
-import exceptions.ExceptionJaCadastrado;
+import exceptions.ExceptionMsg;
 
 public class TesteZona {
 
@@ -24,9 +24,8 @@ public class TesteZona {
 			cartorio.cadastraZona(101, "Estreito");
 			assertEquals(1, cartorio.numeroDeZonas());
 			cartorio.cadastraZona(101, "Estreito");
-		} catch (ExceptionJaCadastrado e) {
+		} catch (ExceptionMsg e) {
 			assertEquals(1, cartorio.numeroDeZonas());
-
 		}
 	}
 
@@ -38,19 +37,26 @@ public class TesteZona {
 	}
 
 	@Test
-	public void cadastra3Zonas_DepoisUmaRepetida() throws Exception {
-		cartorio.cadastraZona(101, "Estreito");
-		cartorio.cadastraZona(102, "Centro");
-		cartorio.cadastraZona(103, "Carvoeira");
-		cartorio.cadastraZona(102, "NaoCentro");
-		assertEquals(3, cartorio.numeroDeZonas());
+	public void cadastra3Zonas_DepoisUmaRepetida() {
+		try {
+			cartorio.cadastraZona(101, "Estreito");
+			cartorio.cadastraZona(102, "Centro");
+			cartorio.cadastraZona(103, "Carvoeira");
+			cartorio.cadastraZona(102, "NaoCentro");
+		} catch (ExceptionMsg e) {
+			assertEquals(3, cartorio.numeroDeZonas());
+		}
+
 	}
 
 	@Test
-	public void cadastraZona101_cadastraDnvComOutraLocalizacao() throws Exception {
-		cartorio.cadastraZona(101, "Estreito");
-		cartorio.cadastraZona(101, "NaoEstreito");
-		assertEquals(1, cartorio.numeroDeZonas());
+	public void cadastraZona101_cadastraDnvComOutraLocalizacao() {
+		try {
+			cartorio.cadastraZona(101, "Estreito");
+			cartorio.cadastraZona(101, "NaoEstreito");
+		} catch (ExceptionMsg e) {
+			assertEquals(1, cartorio.numeroDeZonas());
+		}
 	}
 
 }

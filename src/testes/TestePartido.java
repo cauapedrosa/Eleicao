@@ -6,7 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import controller.FachadaCartorio;
-import exceptions.ExceptionJaCadastrado;
+import exceptions.ExceptionMsg;
 
 public class TestePartido {
 
@@ -28,15 +28,24 @@ public class TestePartido {
 		try {
 			cartorio.cadastrarPartido(13, "PT");
 			cartorio.cadastrarPartido(13, "PT");
-		} catch (ExceptionJaCadastrado e) {
+		} catch (ExceptionMsg e) {
 			assertEquals(1, cartorio.numeroDePartidos());
 		}
 	}
 
 	@Test
-	public void Cadastra2PartidosDiferentes() throws Exception {
+	public void Cadastra4PartidosDiferentes() throws Exception {
 		cartorio.cadastrarPartido(13, "PT");
-		cartorio.cadastrarPartido(45, "PxDB");
-		assertEquals(2, cartorio.numeroDePartidos());
+		cartorio.cadastrarPartido(15, "PMDB");
+		cartorio.cadastrarPartido(45, "PSDB");
+		cartorio.cadastrarPartido(43, "PV");
+		assertEquals(4, cartorio.numeroDePartidos());
+	}
+
+	@Test
+	public void Cadastra2PartidosComMesmoNumero() throws Exception {
+		cartorio.cadastrarPartido(13, "PT");
+		cartorio.cadastrarPartido(13, "PMDB");
+		assertEquals(1, cartorio.numeroDePartidos());
 	}
 }

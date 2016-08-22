@@ -35,8 +35,8 @@ public class GUI {
 				"Verificar Partido", "Verificar Candidato", };
 		String initialSelection = "SELECIONE";
 		Object selection = JOptionPane.showInputDialog(null, "Selecione uma Operação: ",
-				"ELEIÇÕES 2016 > VERIFICAR CADASTROS", JOptionPane.QUESTION_MESSAGE, null, selectionValues,
-				initialSelection);
+				"ELEIÇÕES 2016 > VERIFICAR CADASTROS", JOptionPane.QUESTION_MESSAGE, null,
+				selectionValues, initialSelection);
 		return (String) selection;
 	}
 
