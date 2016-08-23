@@ -2,8 +2,6 @@ package testes;
 
 import static org.junit.Assert.*;
 
-import java.util.ArrayList;
-
 import org.junit.Before;
 import org.junit.Test;
 
@@ -15,12 +13,12 @@ import model.Zona;
 public class TesteEleitor {
 
 	private FachadaCartorio cartorio;
-	private ArrayList<Eleitor> eleitores;
 
 	@Before
-	public void configura() {
+	public void configura() throws Exception {
 		cartorio = new FachadaCartorio();
-		eleitores = new ArrayList<Eleitor>();
+		cartorio.cadastraZona(101, "UFSC");
+
 	}
 
 	@Test
@@ -51,11 +49,10 @@ public class TesteEleitor {
 
 	@Test
 	public void AtribuiEleitorAZona() throws ExceptionMsg {
-		cartorio.cadastrarEleitor("Carol", 173043550, 113352414);
-		Eleitor eleitor = cartorio.getEleitor(113352414);
-		cartorio.cadastraZona(101, "UFSC");
+		cartorio.cadastrarEleitor("Jorge", 12345, 1234567);
+		Eleitor eleitor = cartorio.getEleitor(12345);
 		Zona zona = cartorio.getZona(101);
-		cartorio.atribuirEleitorAZona(eleitor, zona);
+		eleitor.setZona(zona);
 		assertEquals(101, eleitor.getNumZona());
 	}
 

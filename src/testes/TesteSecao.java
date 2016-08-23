@@ -2,10 +2,16 @@ package testes;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+
 import org.junit.Before;
 import org.junit.Test;
 
 import controller.FachadaCartorio;
+import controller.Main;
+import exceptions.ExceptionMsg;
+import model.Eleitor;
+import model.Secao;
 
 public class TesteSecao {
 
@@ -24,5 +30,39 @@ public class TesteSecao {
 	public void cadastraUmaSecao() throws Exception {
 		cartorio.cadastrarSecao(101);
 		assertEquals(1, cartorio.numeroDeSecoes());
+	}
+
+	@Test
+	public void cadastraTresSecoesNaZona101() throws Exception {
+		cartorio.cadastrarSecao(101);
+		cartorio.cadastrarSecao(101);
+		cartorio.cadastrarSecao(101);
+		assertEquals(3, cartorio.numeroDeSecoes());
+	}
+
+	@Test
+	public void cadastraTresSecoesEmTresZonas() throws Exception {
+		cartorio.cadastrarSecao(101);
+		cartorio.cadastrarSecao(101);
+		cartorio.cadastrarSecao(101);
+		cartorio.cadastrarSecao(102);
+		cartorio.cadastrarSecao(102);
+		cartorio.cadastrarSecao(102);
+		cartorio.cadastrarSecao(103);
+		cartorio.cadastrarSecao(103);
+		cartorio.cadastrarSecao(103);
+		assertEquals(9, cartorio.numeroDeSecoes());
+	}
+
+	@Test
+	public void atribuiEleitorASecao() throws Exception {
+		cartorio.cadastrarSecao(101);
+		cartorio.cadastrarEleitor("Jorge", 123, 123);
+		cartorio.setSecaoDoEleitor(123, 1);
+
+		Secao secao = Main.fachada.getSecao(1);
+		Eleitor eleitor = Main.fachada.getEleitor(123);
+
+		// assertEquals(true, secao.verificaSeEleitorVotaNestaZona(eleitor));
 	}
 }

@@ -1,12 +1,17 @@
 package model;
 
+import java.util.ArrayList;
+
 public class Partido {
 	private String nome;
 	private int numero;
+	private Candidato candidatoPrefeito;
+	private ArrayList<Candidato> candidatosVereador;
 
 	public Partido(int numero, String nome) {
 		this.nome = nome;
 		this.numero = numero;
+		this.candidatosVereador = new ArrayList<Candidato>();
 	}
 
 	public String getNome() {
@@ -15,6 +20,22 @@ public class Partido {
 
 	public int getNumero() {
 		return numero;
+	}
+
+	public Candidato getCandidatoPrefeito() {
+		return candidatoPrefeito;
+	}
+
+	public void setCandidatoPrefeito(Candidato candidatoPrefeito) {
+		this.candidatoPrefeito = candidatoPrefeito;
+	}
+
+	public Candidato getCandidatoVereador(int index) {
+		return candidatosVereador.get(index);
+	}
+
+	public void setCandidatoVereador(Candidato candidatoVereador) {
+		candidatosVereador.add(candidatoVereador);
 	}
 
 	@Override
@@ -30,5 +51,4 @@ public class Partido {
 			return false;
 		return true;
 	}
-
 }

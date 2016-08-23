@@ -12,7 +12,7 @@ public class Zona {
 		this.numero = numero;
 		this.localizacao = localizacao;
 		this.secoes = new ArrayList<Secao>();
-		this.numeroSecao = 0;
+		this.setNumeroSecao(0);
 	}
 
 	public int getNumero() {
@@ -23,16 +23,35 @@ public class Zona {
 		return this.localizacao;
 	}
 
+	public int getNumeroSecoes() {
+		return numeroSecao;
+	}
+
+	public void setNumeroSecao(int numeroSecao) {
+		this.numeroSecao = numeroSecao;
+	}
+
+	public ArrayList<Secao> getSecoes() {
+		return secoes;
+	}
+
+	public Secao getSecao(int index) {
+		return secoes.get(index);
+	}
+
+	public void setSecoes(ArrayList<Secao> secoes) {
+		this.secoes = secoes;
+	}
+
 	public Secao criarNovaSecao() {
-		this.numeroSecao++;
-		Secao secao = new Secao(this.numeroSecao, this);
-		this.secoes.add(secao);
+		this.setNumeroSecao(this.getNumeroSecoes() + 1);
+		Secao secao = new Secao(this.getNumeroSecoes(), this);
+		this.getSecoes().add(secao);
 		return secao;
 	}
 
-	@Override
-	public String toString() {
-		return String.format("Numero da Zona: %d\nLocalizacao: %s\nSecoes nesta Zona:" + numero
-				+ localizacao + secoes.size());
+	public void setLocalizacao(String localizacao) {
+		this.localizacao = localizacao;
 	}
+
 }

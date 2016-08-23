@@ -43,11 +43,11 @@ public class Eleitor {
 		return nome;
 	}
 
-	public float getCpf() {
+	public int getCpf() {
 		return cpf;
 	}
 
-	public float getTitulo() {
+	public int getTitulo() {
 		return titulo;
 	}
 

@@ -1,41 +1,55 @@
 package model;
 
-import controller.Main;
-
 public class Candidato {
-	private int cpf;
+	private Eleitor eleitor;
+	private Partido partido;
 	private int numero;
-	private int numPartido;
-	private String nome;
 
-	public Candidato(int cpf, int numPartido, int numero, String nome) {
-
-		if (Main.fachada.getEleitor(cpf) != null) {
-			this.cpf = cpf;
-			this.nome = nome;
-			this.numPartido = numPartido;
-			this.numero = numero;
-		}
+	public Candidato(int numero, Eleitor eleitor, Partido partido) {
+		this.numero = numero;
+		this.eleitor = eleitor;
+		this.partido = partido;
 	}
 
-	public float getCpf() {
-		return cpf;
+	public String getNome() {
+		return eleitor.getNome();
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Candidato other = (Candidato) obj;
-		if (cpf != other.cpf)
-			return false;
-		if (numero != other.numero)
-			return false;
-		return true;
+	public int getCpf() {
+		return eleitor.getCpf();
 	}
 
+	public int getNumero() {
+		return numero;
+	}
+
+	public void setEleitor(Eleitor eleitor) {
+		this.eleitor = eleitor;
+	}
+
+	public Partido getPartido() {
+		return partido;
+	}
+
+	public void setPartido(Partido partido) {
+		this.partido = partido;
+	}
+
+	public void setNumero(int numero) {
+		this.numero = numero;
+	}
+
+	// @Override
+	// public boolean equals(Object obj) {
+	// if (this == obj)
+	// return true;
+	// if (obj == null)
+	// return false;
+	// if (getClass() != obj.getClass())
+	// return false;
+	// Candidato other = (Candidato) obj;
+	// if (numero != other.numero)
+	// return false;
+	// return true;
+	// }
 }

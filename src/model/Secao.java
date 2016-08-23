@@ -20,4 +20,16 @@ public class Secao {
 	public int getNumero() {
 		return this.numero;
 	}
+
+	public boolean verificaSeEleitorVotaNestaZona(Eleitor eleitor) {
+		if (this.eleitores.contains(eleitor))
+			return true;
+		else
+			return false;
+
+	}
+
+	public int getNumEleitores() {
+		return this.eleitores.size();
+	}
 }

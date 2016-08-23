@@ -8,6 +8,7 @@ public class ExceptionMsg extends Exception {
 	}
 
 	public ExceptionMsg(String msg) {
+//		GUI.messagePopup(String.format("Exception: %s", msg));
 		super("Exception: " + msg);
 	}
 }
