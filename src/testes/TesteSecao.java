@@ -2,14 +2,10 @@ package testes;
 
 import static org.junit.Assert.*;
 
-import java.util.ArrayList;
-
 import org.junit.Before;
 import org.junit.Test;
 
 import controller.FachadaCartorio;
-import controller.Main;
-import exceptions.ExceptionMsg;
 import model.Eleitor;
 import model.Secao;
 
@@ -60,9 +56,9 @@ public class TesteSecao {
 		cartorio.cadastrarEleitor("Jorge", 123, 123);
 		cartorio.setSecaoDoEleitor(123, 1);
 
-		Secao secao = Main.fachada.getSecao(1);
-		Eleitor eleitor = Main.fachada.getEleitor(123);
+		Secao secao = cartorio.getSecao(1);
+		Eleitor eleitor = cartorio.getEleitor(123);
 
-		// assertEquals(true, secao.verificaSeEleitorVotaNestaZona(eleitor));
+		assertEquals(true, secao.verificaSeEleitorVotaNestaSecao(eleitor));
 	}
 }

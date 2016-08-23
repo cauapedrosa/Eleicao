@@ -93,11 +93,12 @@
     </display>  
   </class>  
   <association id="11">    
-    <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="12" name="eleitor">        
+    <bendpoint x="859" y="1511"/>    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="12" name="eleitores">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
-      <multiplicity id="13" minimum="0" maximum="1">        
+      <multiplicity id="13" minimum="0" maximum="2147483647">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
@@ -105,165 +106,164 @@
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="14">    
-    <bendpoint x="38" y="955"/>    
-    <bendpoint x="38" y="1238"/>    
-    <bendpoint x="38" y="1450"/>    
-    <bendpoint x="330" y="1455"/>    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="15" name="secoes">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="16" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="5" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="17">    
     <bendpoint x="603" y="1375"/>    
     <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="18" name="zona">        
+      <attribute id="15" name="zona">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
-      <multiplicity id="19" minimum="0" maximum="1">        
+      <multiplicity id="16" minimum="0" maximum="1">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="4" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="20">    
-    <bendpoint x="859" y="1511"/>    
-    <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="21" name="eleitores">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="22" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="23">    
-    <bendpoint x="615" y="955"/>    
-    <bendpoint x="615" y="1238"/>    
-    <bendpoint x="613" y="1451"/>    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="24" name="zonas">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="25" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="4" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="26">    
-    <end type="SOURCE" refId="7" navigable="false">      
-      <attribute id="27" name="candidatoPrefeito">        
-        <position height="18" width="92" x="435" y="898"/>      
-      </attribute>      
-      <multiplicity id="28" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="8" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="29">    
-    <bendpoint x="828" y="1487"/>    
-    <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="30" name="secao">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="31" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="5" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="32">    
-    <end type="SOURCE" refId="3"/>    
+  <generalization id="17">    
+    <end type="SOURCE" refId="9"/>    
     <end type="TARGET" refId="8"/>  
   </generalization>  
-  <association id="33">    
-    <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="34" name="partido">        
+  <association id="18">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="19" name="partidos">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
-      <multiplicity id="35" minimum="0" maximum="1">        
+      <multiplicity id="20" minimum="0" maximum="2147483647">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="7" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="36">    
+  <association id="21">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="37" name="partidos">        
+      <attribute id="22" name="eleitores">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="23" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="24">    
+    <bendpoint x="615" y="955"/>    
+    <bendpoint x="615" y="1238"/>    
+    <bendpoint x="613" y="1451"/>    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="25" name="zonas">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="26" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="27">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="28" name="candidatoPrefeito">        
+        <position height="18" width="92" x="435" y="898"/>      
+      </attribute>      
+      <multiplicity id="29" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="30">    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="31" name="fachada">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="32" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="1" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="33">    
+    <bendpoint x="38" y="955"/>    
+    <bendpoint x="38" y="1238"/>    
+    <bendpoint x="38" y="1450"/>    
+    <bendpoint x="330" y="1455"/>    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="34" name="secoes">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="35" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="5" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="36">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="37" name="secoes">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
       <multiplicity id="38" minimum="0" maximum="2147483647">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
-    <end type="TARGET" refId="7" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="39">    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="40" name="secoes">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="41" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
     <end type="TARGET" refId="5" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="42">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="43" name="eleitores">        
+  <association id="39">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="40" name="partido">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
-      <multiplicity id="44" minimum="0" maximum="2147483647">        
+      <multiplicity id="41" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="7" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="42">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="43" name="eleitor">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="44" minimum="0" maximum="1">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="2" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="45">    
-    <end type="SOURCE" refId="9"/>    
-    <end type="TARGET" refId="8"/>  
-  </generalization>  
-  <association id="46">    
+  <association id="45">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="47" name="candidatos">        
+      <attribute id="46" name="candidatos">        
         <position height="18" width="61" x="486" y="920"/>      
       </attribute>      
-      <multiplicity id="48" minimum="0" maximum="2147483647">        
+      <multiplicity id="47" minimum="0" maximum="2147483647">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="8" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
+  <generalization id="48">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="8"/>  
+  </generalization>  
   <association id="49">    
-    <end type="SOURCE" refId="10" navigable="false">      
-      <attribute id="50" name="fachada">        
+    <bendpoint x="828" y="1487"/>    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="50" name="secao">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
       <multiplicity id="51" minimum="0" maximum="1">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
-    <end type="TARGET" refId="1" navigable="true"/>    
+    <end type="TARGET" refId="5" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 

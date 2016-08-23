@@ -2,6 +2,8 @@ package model;
 
 import java.util.ArrayList;
 
+import exceptions.ExceptionMsg;
+
 public class Partido {
 	private String nome;
 	private int numero;
@@ -34,8 +36,12 @@ public class Partido {
 		return candidatosVereador.get(index);
 	}
 
-	public void setCandidatoVereador(Candidato candidatoVereador) {
-		candidatosVereador.add(candidatoVereador);
+	public void setCandidatoVereador(Candidato candidatoVereador) throws ExceptionMsg {
+		if (candidatosVereador.size() < 3) {
+			candidatosVereador.add(candidatoVereador);
+		} else {
+			throw new ExceptionMsg("Partido ja possui 4 Vereadores");
+		}
 	}
 
 	@Override

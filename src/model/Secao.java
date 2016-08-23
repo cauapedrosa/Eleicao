@@ -21,12 +21,8 @@ public class Secao {
 		return this.numero;
 	}
 
-	public boolean verificaSeEleitorVotaNestaZona(Eleitor eleitor) {
-		if (this.eleitores.contains(eleitor))
-			return true;
-		else
-			return false;
-
+	public boolean verificaSeEleitorVotaNestaSecao(Eleitor eleitor) {
+		return this.eleitores.contains(eleitor);
 	}
 
 	public int getNumEleitores() {
