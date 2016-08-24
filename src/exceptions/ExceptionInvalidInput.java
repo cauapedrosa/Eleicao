@@ -1,6 +1,5 @@
 package exceptions;
 
-import controller.Main;
 import view.GUI;
 
 public class ExceptionInvalidInput extends Exception {
@@ -10,8 +9,7 @@ public class ExceptionInvalidInput extends Exception {
 		super();
 	}
 
-	public ExceptionInvalidInput(String msg) throws Exception {
-		GUI.messagePopup(String.format("Exception: %s", msg));
-		Main.main(null);
+	public ExceptionInvalidInput(String msg) {
+		super("Exception: " + msg);
 	}
 }

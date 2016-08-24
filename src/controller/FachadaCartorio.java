@@ -68,7 +68,7 @@ public class FachadaCartorio {
 			Secao secao = zona.criarNovaSecao();
 			this.secoes.add(secao);
 		} else {
-			throw new ExceptionMsg("Seção já cadastrada");
+			throw new ExceptionMsg("Zona não encontrada");
 		}
 	}
 

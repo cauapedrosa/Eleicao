@@ -41,6 +41,10 @@ public class GUI {
 		return (String) selection;
 	}
 
+	public static void errorMsgPopup(String message) {
+		JOptionPane.showMessageDialog(null, message, "ERROR!", JOptionPane.ERROR_MESSAGE);
+	}
+
 	// public static String verificaMenu() {
 	// JDialog.setDefaultLookAndFeelDecorated(true);
 	// Object[] selectionValues = { "Verificar Zona", "Verificar Seção",
