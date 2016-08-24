@@ -5,54 +5,54 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import controller.FachadaCartorio;
-import model.Eleitor;
-import model.Secao;
+import modelo.Eleitor;
+import modelo.FachadaCartorioEleitoral;
+import modelo.Secao;
 
 public class TesteSecao {
 
-	private FachadaCartorio cartorio;
+	private FachadaCartorioEleitoral cartorio;
 
 	@Before
 	public void configura() throws Exception {
-		cartorio = new FachadaCartorio();
+		cartorio = new FachadaCartorioEleitoral();
 
-		cartorio.cadastraZona(101, "UFSC");
-		cartorio.cadastraZona(102, "Carvoeira");
-		cartorio.cadastraZona(103, "Estreito");
+		cartorio.cadastraZonaEleitoral(101, "UFSC");
+		cartorio.cadastraZonaEleitoral(102, "Carvoeira");
+		cartorio.cadastraZonaEleitoral(103, "Estreito");
 	}
 
 	@Test
 	public void cadastraUmaSecao() throws Exception {
-		cartorio.cadastrarSecao(101);
+		( cartorio).cadastraSecaoEleitoral(101);
 		assertEquals(1, cartorio.numeroDeSecoes());
 	}
 
 	@Test
 	public void cadastraTresSecoesNaZona101() throws Exception {
-		cartorio.cadastrarSecao(101);
-		cartorio.cadastrarSecao(101);
-		cartorio.cadastrarSecao(101);
+		cartorio.cadastraSecaoEleitoral(101);
+		cartorio.cadastraSecaoEleitoral(101);
+		cartorio.cadastraSecaoEleitoral(101);
 		assertEquals(3, cartorio.numeroDeSecoes());
 	}
 
 	@Test
 	public void cadastraTresSecoesEmTresZonas() throws Exception {
-		cartorio.cadastrarSecao(101);
-		cartorio.cadastrarSecao(101);
-		cartorio.cadastrarSecao(101);
-		cartorio.cadastrarSecao(102);
-		cartorio.cadastrarSecao(102);
-		cartorio.cadastrarSecao(102);
-		cartorio.cadastrarSecao(103);
-		cartorio.cadastrarSecao(103);
-		cartorio.cadastrarSecao(103);
+		cartorio.cadastraSecaoEleitoral(101);
+		cartorio.cadastraSecaoEleitoral(101);
+		cartorio.cadastraSecaoEleitoral(101);
+		cartorio.cadastraSecaoEleitoral(102);
+		cartorio.cadastraSecaoEleitoral(102);
+		cartorio.cadastraSecaoEleitoral(102);
+		cartorio.cadastraSecaoEleitoral(103);
+		cartorio.cadastraSecaoEleitoral(103);
+		cartorio.cadastraSecaoEleitoral(103);
 		assertEquals(9, cartorio.numeroDeSecoes());
 	}
 
 	@Test
 	public void atribuiEleitorASecao() throws Exception {
-		cartorio.cadastrarSecao(101);
+		cartorio.cadastraSecaoEleitoral(101);
 		cartorio.cadastrarEleitor("Jorge", 123, 123);
 		cartorio.setSecaoDoEleitor(123, 1);
 

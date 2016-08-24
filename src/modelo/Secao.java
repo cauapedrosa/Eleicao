@@ -1,12 +1,15 @@
-package model;
+package modelo;
 
 import java.util.ArrayList;
 
-public class Secao {
+import interfaces.ISecao;
+import interfaces.IZonaEleitoral;
+
+public class Secao implements ISecao {
 	private int numero;
 	private ArrayList<Eleitor> eleitores;
 
-	public Secao(int numero, Zona zona) {
+	public Secao(int numero, ZonaEleitoral zona) {
 		this.numero = numero;
 		this.eleitores = new ArrayList<Eleitor>();
 	}
@@ -27,5 +30,10 @@ public class Secao {
 
 	public int getNumEleitores() {
 		return this.eleitores.size();
+	}
+
+	public IZonaEleitoral getZona() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

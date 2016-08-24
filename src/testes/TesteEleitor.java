@@ -5,19 +5,19 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import controller.FachadaCartorio;
 import exceptions.ExceptionMsg;
-import model.Eleitor;
-import model.Zona;
+import modelo.Eleitor;
+import modelo.FachadaCartorioEleitoral;
+import modelo.ZonaEleitoral;
 
 public class TesteEleitor {
 
-	private FachadaCartorio cartorio;
+	private FachadaCartorioEleitoral cartorio;
 
 	@Before
 	public void configura() throws Exception {
-		cartorio = new FachadaCartorio();
-		cartorio.cadastraZona(101, "UFSC");
+		cartorio = new FachadaCartorioEleitoral();
+		cartorio.cadastraZonaEleitoral(101, "UFSC");
 
 	}
 
@@ -48,10 +48,10 @@ public class TesteEleitor {
 	}
 
 	@Test
-	public void AtribuiEleitorAZona() throws ExceptionMsg {
+	public void AtribuiEleitorAZona() throws Exception {
 		cartorio.cadastrarEleitor("Jorge", 12345, 1234567);
 		Eleitor eleitor = cartorio.getEleitor(12345);
-		Zona zona = cartorio.getZona(101);
+		ZonaEleitoral zona = cartorio.getZona(101);
 		eleitor.setZona(zona);
 		assertEquals(101, eleitor.getNumZona());
 	}

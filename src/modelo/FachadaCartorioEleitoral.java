@@ -1,44 +1,44 @@
-package controller;
+package modelo;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import controller.Main;
 import exceptions.ExceptionMsg;
-import model.Candidato;
-import model.Eleitor;
-import model.Partido;
-import model.Secao;
-import model.Zona;
+import interfaces.CartorioEleitoral;
+import interfaces.ISecao;
 
-public class FachadaCartorio {
-	private ArrayList<Zona> zonas;
+public class FachadaCartorioEleitoral implements CartorioEleitoral {
+	private ArrayList<ZonaEleitoral> zonas;
 	private ArrayList<Eleitor> eleitores;
 	private ArrayList<Secao> secoes;
 	private ArrayList<Partido> partidos;
 	private ArrayList<Candidato> candidatos;
 
-	public FachadaCartorio() {
-		this.zonas = new ArrayList<Zona>();
+	public FachadaCartorioEleitoral() {
+		this.zonas = new ArrayList<ZonaEleitoral>();
 		this.secoes = new ArrayList<Secao>();
 		this.eleitores = new ArrayList<Eleitor>();
 		this.partidos = new ArrayList<Partido>();
 		this.candidatos = new ArrayList<Candidato>();
 	}
 
-	public void cadastraZona(int numeroZona, String localizacao) throws ExceptionMsg {
-		Zona zona = getZona(numeroZona);
+	public void cadastraZonaEleitoral(int numeroZonaEleitoral, String localizacao)
+			throws Exception {
+		ZonaEleitoral zona = (ZonaEleitoral) getZona(numeroZonaEleitoral);
 		if (zona == null) {
-			zona = new Zona(numeroZona, localizacao);
+			zona = new ZonaEleitoral(numeroZonaEleitoral, localizacao);
 			this.zonas.add(zona);
 		} else {
 			throw new ExceptionMsg("Zona já cadastrada");
 		}
 	}
 
-	public Zona getZona(int numeroZona) throws ExceptionMsg {
+	public ZonaEleitoral getZona(int numeroZonaEleitoral) throws Exception {
 		try {
 			for (int cont = 0; cont < this.zonas.size(); cont++) {
-				Zona zona = this.zonas.get(cont);
-				if (zona.getNumero() == numeroZona) {
+				ZonaEleitoral zona = this.zonas.get(cont);
+				if (zona.getNumero() == numeroZonaEleitoral) {
 					return zona;
 				}
 			}
@@ -52,7 +52,7 @@ public class FachadaCartorio {
 	public String listarZonas() {
 		String listaZonas = "Lista de Zonas: \n";
 		for (int cont = 0; cont < zonas.size(); cont++) {
-			Zona zona = zonas.get(cont);
+			ZonaEleitoral zona = zonas.get(cont);
 			if (zona != null) {
 				int num = zona.getNumero();
 				String local = zona.getLocalizacao();
@@ -62,13 +62,13 @@ public class FachadaCartorio {
 		return listaZonas;
 	}
 
-	public void cadastrarSecao(int numeroZona) throws ExceptionMsg {
-		Zona zona = getZona(numeroZona);
-		if (zona != null) {
+	public void cadastraSecaoEleitoral(int numeroZonaEleitoral) throws Exception {
+		if (getZona(numeroZonaEleitoral) == null) {
+			throw new ExceptionMsg("Zona não encontrada");
+		} else {
+			ZonaEleitoral zona = (ZonaEleitoral) getZona(numeroZonaEleitoral);
 			Secao secao = zona.criarNovaSecao();
 			this.secoes.add(secao);
-		} else {
-			throw new ExceptionMsg("Zona não encontrada");
 		}
 	}
 
@@ -89,11 +89,10 @@ public class FachadaCartorio {
 	public String listarTodasSecoes() {
 		String listaSecoes = String.format("Lista de Secoes:\n");
 
-		for (int i = 0; i < Main.fachada.numeroDeZonas(); i++) {
-			Zona zona = Main.fachada.zonas.get(i);
+		for (int i = 0; i < Main.fachada.numeroDeZonasEleitorais(); i++) {
+			ZonaEleitoral zona = Main.fachada.zonas.get(i);
 			for (int cont = 0; cont < Main.fachada.secoes.size(); cont++) {
 				Secao secao = Main.fachada.secoes.get(cont);
-				// Secao secao = zona.getSecao(cont);
 				if (secao != null) {
 					int numSec = secao.getNumero();
 					int numEleitores = secao.getNumEleitores();
@@ -107,30 +106,10 @@ public class FachadaCartorio {
 		return listaSecoes;
 	}
 
-	public String qtdSecoesNumaZona(int numZona) throws ExceptionMsg {
-		String listaSecoesDeUmaZona = "";
-		Zona zona = getZona(numZona);
-		listaSecoesDeUmaZona += String.format("A Zona %d possui %d Secoes", numZona,
+	public String qtdSecoesNumaZona(int numZona) throws Exception {
+		ZonaEleitoral zona = getZona(numZona);
+		String listaSecoesDeUmaZona = String.format("A Zona %d possui %d Secoes", numZona,
 				zona.getNumeroSecoes());
-		// for (int cont = 0; cont < zona.getNumeroSecoes(); cont++) {
-		// System.out.printf("1 - cont %02d, há %02d secoes \n", cont,
-		// zona.getNumeroSecoes());
-		// if (zona.getSecao(cont) != null) {
-		// System.out.printf("2 - cont %02d, há %02d secoes \n", cont,
-		// zona.getNumeroSecoes());
-		// Secao secao = Main.fachada.getSecao(cont);
-		// if (secao == null) {
-		// System.out.println("SECAO NULA");
-		// }
-		// if (secao != null) {
-		// int numero = secao.getNumero();
-		// listaSecoesDeUmaZona += String.format("Secao %d \n", numero);
-		// System.out.printf(listaSecoesDeUmaZona);
-		//
-		// }
-		// }
-		// System.out.printf("Terminando método listarSecoesDeUmaZona()");
-		// }
 		return listaSecoesDeUmaZona;
 	}
 
@@ -197,10 +176,11 @@ public class FachadaCartorio {
 
 		if (partidos.contains(partido))
 			throw new ExceptionMsg("Partido já cadastrado");
-		if (numeroPartido > 0 && nomePartido != null)
-			throw new ExceptionMsg("Numero do Partido Inválido");
+		if (numeroPartido == 0 || numeroPartido > 99)
+			throw new ExceptionMsg(
+					"Numero do Partido Inválido " + "(Igual a 0 ou Mais de Dois Digitos)");
 		if (siglaPartido.length() >= 5)
-			throw new ExceptionMsg("Sigla inválida");
+			throw new ExceptionMsg("Sigla inválida (Mais de Dois Digitos)");
 
 		partido = new Partido(nomePartido, siglaPartido, numeroPartido);
 		this.partidos.add(partido);
@@ -303,11 +283,17 @@ public class FachadaCartorio {
 		return listaCandidatos;
 	}
 
-	public int numeroDeZonas() {
+	public int numeroDeZonasEleitorais() {
 		return zonas.size();
 	}
 
-	public int numeroDeSecoesDeUmaZona(Zona zona) {
+	public int numeroDeSecoesDeUmaZona(int numeroZonaEleitoral) {
+		ZonaEleitoral zona = null;
+		try {
+			zona = getZona(numeroZonaEleitoral);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return zona.getNumeroSecoes();
 	}
 
@@ -361,7 +347,7 @@ public class FachadaCartorio {
 		if (getZona(numZona) == null)
 			throw new ExceptionMsg("Zona Invalida");
 		Eleitor eleitor = getEleitor(cpf);
-		Zona zona = getZona(numZona);
+		ZonaEleitoral zona = getZona(numZona);
 		eleitor.setZona(zona);
 	}
 
@@ -389,7 +375,7 @@ public class FachadaCartorio {
 	}
 
 	public void alterarLocalDeUmaZona(int numZona, String localizacao) throws Exception {
-		Zona zona = getZona(numZona);
+		ZonaEleitoral zona = getZona(numZona);
 		zona.setLocalizacao(localizacao);
 	}
 
@@ -406,6 +392,12 @@ public class FachadaCartorio {
 	public void alterarSiglaPartido(int numPartido, String novaSiglaPartido) throws Exception {
 		Partido partido = getPartido(numPartido);
 		partido.setSigla(novaSiglaPartido);
+	}
+
+	@Override
+	public List<? extends ISecao> getSecoesDeUmaZona(int numeroZonaEleitoral) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

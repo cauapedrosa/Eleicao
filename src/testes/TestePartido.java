@@ -5,19 +5,19 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import controller.FachadaCartorio;
 import exceptions.ExceptionMsg;
-import model.Candidato;
-import model.Eleitor;
-import model.Partido;
+import modelo.Candidato;
+import modelo.Eleitor;
+import modelo.FachadaCartorioEleitoral;
+import modelo.Partido;
 
 public class TestePartido {
 
-	private FachadaCartorio cartorio;
+	private FachadaCartorioEleitoral cartorio;
 
 	@Before
 	public void configura() {
-		cartorio = new FachadaCartorio();
+		cartorio = new FachadaCartorioEleitoral();
 	}
 
 	@Test

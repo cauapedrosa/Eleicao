@@ -1,11 +1,11 @@
-package model;
+package modelo;
 
 public class Eleitor {
 
 	private String nome;
 	private int cpf;
 	private int titulo;
-	private Zona zona;
+	private ZonaEleitoral zona;
 	private Secao secao;
 	private String endereco;
 	private String municipio;
@@ -23,7 +23,7 @@ public class Eleitor {
 				nome, cpf, titulo, zona.toString(), secao, endereco, municipio);
 	}
 
-	public void setZona(Zona zona) {
+	public void setZona(ZonaEleitoral zona) {
 		this.zona = zona;
 	}
 
@@ -55,7 +55,7 @@ public class Eleitor {
 		return zona.getNumero();
 	}
 
-	public Zona getZona() {
+	public ZonaEleitoral getZona() {
 		return zona;
 	}
 

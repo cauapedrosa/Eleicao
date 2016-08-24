@@ -1,6 +1,4 @@
-package exceptions;
-
-import view.GUI;
+package excecoes;
 
 public class ExceptionInvalidInput extends Exception {
 	private static final long serialVersionUID = 1L;

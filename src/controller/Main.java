@@ -1,13 +1,13 @@
 package controller;
 
-import exceptions.ExceptionInvalidInput;
 import exceptions.ExceptionMsg;
-import model.Zona;
+import interfaces.IZonaEleitoral;
+import modelo.FachadaCartorioEleitoral;
 import view.GUI;
 
 public class Main {
 
-	public static FachadaCartorio fachada = new FachadaCartorio();
+	public static FachadaCartorioEleitoral fachada = new FachadaCartorioEleitoral();
 
 	public static void main(String[] args) throws Exception {
 		boolean loopFlag = true;
@@ -54,10 +54,10 @@ public class Main {
 		try {
 			int numeroZonaEleitoral = GUI.inputInt("Digite o Numero da Zona Eleitoral");
 			String localizacao = GUI.inputStr("Digite a localizacao da Zona Eleitoral");
-			fachada.cadastraZona(numeroZonaEleitoral, localizacao);
+			fachada.cadastraZonaEleitoral(numeroZonaEleitoral, localizacao);
 			GUI.printToConsole(String.format(
 					"Zona Cadastrada: %d - %s \n" + "Numero de Zonas aumentado para: %d",
-					numeroZonaEleitoral, localizacao, fachada.numeroDeZonas()));
+					numeroZonaEleitoral, localizacao, fachada.numeroDeZonasEleitorais()));
 		} catch (Exception e) {
 			GUI.errorMsgPopup(e.getMessage());
 		}
@@ -67,12 +67,11 @@ public class Main {
 		try {
 			int numero = GUI.inputInt(
 					"Digite o Número da Zona Eleitoral em que deseja cadastrar uma Seção");
-			fachada.cadastrarSecao(numero);
+			fachada.cadastraSecaoEleitoral(numero);
 			GUI.printToConsole(String.format(
 					"Numero Total de Seções aumentado para: %d \n"
 							+ "Numero de Seções da Zona %d aumentado para %d",
-					fachada.numeroDeSecoes(), numero,
-					fachada.numeroDeSecoesDeUmaZona(fachada.getZona(numero))));
+					fachada.numeroDeSecoes(), numero, fachada.numeroDeSecoesDeUmaZona(numero)));
 		} catch (Exception e) {
 			GUI.errorMsgPopup(e.getMessage());
 		}
@@ -99,13 +98,9 @@ public class Main {
 		try {
 			String nomePartido = GUI.inputStr("Digite o Nome do Partido");
 			int numeroPartido = GUI.inputInt("Digite o Numero do Partido");
-			String siglaPartido = GUI.inputStr("Digite a Sigla do Partido (até 5 caracteres");
+			String siglaPartido = GUI.inputStr("Digite a Sigla do Partido (até 5 caracteres)");
 
-			if (numeroPartido == 0 || numeroPartido > 99 || nomePartido == null)
-				throw new ExceptionMsg("Partido Invalido");
-			else {
-				fachada.cadastrarPartido(nomePartido, siglaPartido, numeroPartido);
-			}
+			fachada.cadastrarPartido(nomePartido, siglaPartido, numeroPartido);
 			GUI.printToConsole(String.format(
 					"Partido Cadastrado: %d - %s \n" + "Numero de Partidos Aumentado Para: %d",
 					numeroPartido, nomePartido, fachada.numeroDePartidos()));
@@ -228,7 +223,7 @@ public class Main {
 			while (loopFlag) {
 				int opcaoSelecionada = GUI.inputInt("1 - Alterar o Numero de um Partido \n"
 						+ "2 - Alterar o Nome de um Partido \n"
-						+ "3 - Alterar a Sigla de um Partido" + "0 - Sair");
+						+ "3 - Alterar a Sigla de um Partido \n" + "0 - Sair");
 
 				switch (opcaoSelecionada) {
 				case 0:
@@ -374,9 +369,10 @@ public class Main {
 					loopFlag = false;
 					break;
 				case 1:
-					int numeroZona = GUI.inputInt("Digite o numero da Zona que voce procura \n");
+					int numeroZonaEleitoral = GUI
+							.inputInt("Digite o numero da Zona que voce procura \n");
 					String msg = "";
-					Zona zona = fachada.getZona(numeroZona);
+					IZonaEleitoral zona = fachada.getZona(numeroZonaEleitoral);
 					if (zona == null) {
 						throw new ExceptionMsg("Nenhuma Zona Encontrada");
 					} else {

@@ -5,17 +5,17 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import controller.FachadaCartorio;
 import exceptions.ExceptionMsg;
-import model.Candidato;
+import modelo.Candidato;
+import modelo.FachadaCartorioEleitoral;
 
 public class TesteCandidato {
 
-	private FachadaCartorio cartorio;
+	private FachadaCartorioEleitoral cartorio;
 
 	@Before
 	public void configura() throws ExceptionMsg {
-		cartorio = new FachadaCartorio();
+		cartorio = new FachadaCartorioEleitoral();
 
 		cartorio.cadastrarEleitor("Jorge", 123, 12345);
 		cartorio.cadastrarPartido("Partido dos Trabalhadores", "PT", 13);
