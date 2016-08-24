@@ -1,6 +1,5 @@
 package controller;
 
-import exceptions.ExceptionInvalidInput;
 import exceptions.ExceptionMsg;
 import model.Zona;
 import view.GUI;
@@ -90,11 +89,13 @@ public class Main {
 
 		String nomePartido = GUI.inputStr("Digite o Nome do Partido");
 		int numeroPartido = GUI.inputInt("Digite o Numero do Partido");
+		String siglaPartido = GUI.inputStr("Digite a Sigla do Partido (até 5 caracteres");
 
-		if (numeroPartido > 0 || numeroPartido < 99 || nomePartido != null)
-			fachada.cadastrarPartido(numeroPartido, nomePartido);
-		else
+		if (numeroPartido == 0 || numeroPartido > 99 || nomePartido == null)
 			throw new ExceptionMsg("Partido Invalido");
+		else {
+			fachada.cadastrarPartido(nomePartido, siglaPartido, numeroPartido);
+		}
 		GUI.printToConsole(String.format(
 				"Partido Cadastrado: %d - %s \n" + "Numero de Partidos Aumentado Para: %d",
 				numeroPartido, nomePartido, fachada.numeroDePartidos()));
@@ -128,9 +129,10 @@ public class Main {
 		boolean loopFlag = true;
 		while (loopFlag) {
 
-			int opcaoSelecionada = GUI.inputInt("1 - Atualizar Cadastro de Eleitor \n"
-					+ "2 - Atualizar Cadastro de Candidato \n"
-					+ "3 - Atualizar Cadastro de Zona/Secao \n" + "0 - Sair");
+			int opcaoSelecionada = GUI.inputInt(
+					"1 - Atualizar Cadastro de Eleitor \n" + "2 - Atualizar Cadastro de Partido \n"
+							+ "3 - Atualizar Cadastro de Candidato \n"
+							+ "4 - Atualizar Cadastro de Zona/Secao \n" + "0 - Sair");
 
 			switch (opcaoSelecionada) {
 			case 0:
@@ -140,9 +142,12 @@ public class Main {
 				atualizarCadastroEleitor();
 				break;
 			case 2:
-				atualizarCadastroCandidato();
+				atualizarCadastroPartido();
 				break;
 			case 3:
+				atualizarCadastroCandidato();
+				break;
+			case 4:
 				atualizarCadastroZonaSecao();
 				break;
 			default:
@@ -192,7 +197,41 @@ public class Main {
 		}
 	}
 
-	private static void atualizarCadastroCandidato() throws ExceptionInvalidInput, ExceptionMsg {
+	private static void atualizarCadastroPartido() throws Exception {
+		boolean loopFlag = true;
+		int numPartido;
+		while (loopFlag) {
+			int opcaoSelecionada = GUI.inputInt(
+					"1 - Alterar o Numero de um Partido \n" + "2 - Alterar o Nome de um Partido \n"
+							+ "3 - Alterar a Sigla de um Partido" + "0 - Sair");
+
+			switch (opcaoSelecionada) {
+			case 0:
+				loopFlag = false;
+				break;
+			case 1:
+				numPartido = GUI.inputInt("Digite o Numero do Partido");
+				int novoNumPartido = GUI.inputInt("Digite o Novo Numero do Partido");
+				fachada.alterarNumeroPartido(numPartido, novoNumPartido);
+				break;
+			case 2:
+				numPartido = GUI.inputInt("Digite o Numero do Partido");
+				String novoNomePartido = ("Digite o Novo Nome do Partido");
+				fachada.alterarNomePartido(numPartido, novoNomePartido);
+				break;
+			case 3:
+				numPartido = GUI.inputInt("Digite o Numero do Partido");
+				String novaSiglaPartido = ("Digite a Nova Sigla do Partido");
+				fachada.alterarSiglaPartido(numPartido, novaSiglaPartido);
+				break;
+			default:
+				opcaoSelecionada = 0;
+				break;
+			}
+		}
+	}
+
+	private static void atualizarCadastroCandidato() throws Exception {
 		boolean loopFlag = true;
 		int cpf;
 		while (loopFlag) {
@@ -220,7 +259,7 @@ public class Main {
 		}
 	}
 
-	private static void atualizarCadastroZonaSecao() throws ExceptionInvalidInput, ExceptionMsg {
+	private static void atualizarCadastroZonaSecao() throws Exception {
 		boolean loopFlag = true;
 		while (loopFlag) {
 			int opcaoSelecionada = GUI.inputInt("1 - Alterar o Local de uma Zona \n"

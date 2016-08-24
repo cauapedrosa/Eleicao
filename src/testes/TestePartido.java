@@ -22,15 +22,15 @@ public class TestePartido {
 
 	@Test
 	public void CadastraPartido() throws Exception {
-		cartorio.cadastrarPartido(13, "PT");
+		cartorio.cadastrarPartido("Partido dos Trabalhadores", "PT", 13);
 		assertEquals(1, cartorio.numeroDePartidos());
 	}
 
 	@Test
 	public void Cadastra2PartidosIguais() {
 		try {
-			cartorio.cadastrarPartido(13, "PT");
-			cartorio.cadastrarPartido(13, "PT");
+			cartorio.cadastrarPartido("Partido dos Trabalhadores", "PT", 13);
+			cartorio.cadastrarPartido("Partido dos Trabalhadores", "PT", 13);
 		} catch (ExceptionMsg e) {
 			assertEquals(1, cartorio.numeroDePartidos());
 		}
@@ -38,18 +38,18 @@ public class TestePartido {
 
 	@Test
 	public void Cadastra4PartidosDiferentes() throws Exception {
-		cartorio.cadastrarPartido(13, "PT");
-		cartorio.cadastrarPartido(15, "PMDB");
-		cartorio.cadastrarPartido(45, "PSDB");
-		cartorio.cadastrarPartido(43, "PV");
+		cartorio.cadastrarPartido("Partido dos Trabalhadores", "PT", 13);
+		cartorio.cadastrarPartido("Partido do Movimento Democrático Brasileiro", "PMDB", 15);
+		cartorio.cadastrarPartido("Partido da Social Democracia Brasileira", "PSDB", 45);
+		cartorio.cadastrarPartido("Partido Verde", "PV", 43);
 		assertEquals(4, cartorio.numeroDePartidos());
 	}
 
 	@Test
 	public void Cadastra2PartidosComMesmoNumero() {
 		try {
-			cartorio.cadastrarPartido(13, "PT");
-			cartorio.cadastrarPartido(13, "PMDB");
+			cartorio.cadastrarPartido("Partido dos Trabalhadores", "PT", 13);
+			cartorio.cadastrarPartido("Partido do Movimento Democrático Brasileiro", "PMDB", 13);
 			fail();
 		} catch (ExceptionMsg e) {
 		}
@@ -61,13 +61,14 @@ public class TestePartido {
 		String nome = "Carol";
 		int cpf = 123;
 		int titulo = 12345;
-		int numPartido = 13;
-		String nomePartido = "PT";
+		int numeroPartido = 13;
+		String nomePartido = "Partido dos Trabalhadores";
+		String siglaPartido = "PT";
 		int numCandidato = 100;
 
 		cartorio.cadastrarEleitor(nome, cpf, titulo);
-		cartorio.cadastrarPartido(numPartido, nomePartido);
-		cartorio.cadastrarCandidato(cpf, nome, numPartido, numCandidato);
+		cartorio.cadastrarPartido(nomePartido, siglaPartido, numeroPartido);
+		cartorio.cadastrarCandidato(cpf, nome, numeroPartido, numCandidato);
 
 		Partido partido = cartorio.getPartido(13);
 		Candidato candidato = cartorio.getCandidatoNumero(100);
@@ -80,13 +81,14 @@ public class TestePartido {
 		String nome = "Carol";
 		int cpf = 123;
 		int titulo = 12345;
-		int numPartido = 13;
-		String nomePartido = "PT";
+		int numeroPartido = 13;
+		String nomePartido = "Partido dos Trabalhadores";
+		String siglaPartido = "PT";
 		int numCandidato = 100;
 
 		cartorio.cadastrarEleitor(nome, cpf, titulo);
-		cartorio.cadastrarPartido(numPartido, nomePartido);
-		cartorio.cadastrarCandidato(cpf, nome, numPartido, numCandidato);
+		cartorio.cadastrarPartido(nomePartido, siglaPartido, numeroPartido);
+		cartorio.cadastrarCandidato(cpf, nome, numeroPartido, numCandidato);
 
 		Partido partido = cartorio.getPartido(13);
 		Candidato candidato = cartorio.getCandidatoNumero(100);
@@ -103,7 +105,7 @@ public class TestePartido {
 	public void AtribuiDoisCandidatosAUmPartido() throws Exception {
 		cartorio.cadastrarEleitor("Carol", 123, 123);
 		cartorio.cadastrarEleitor("Jorge", 999, 999);
-		cartorio.cadastrarPartido(13, "PT");
+		cartorio.cadastrarPartido("Partido dos Trabalhadores", "PT", 13);
 		cartorio.cadastrarCandidato(123, "Carol", 13, 100);
 		cartorio.cadastrarCandidato(999, "Jorge", 13, 50);
 
@@ -133,7 +135,7 @@ public class TestePartido {
 			cartorio.cadastrarEleitor("Amanda", num4, num4);
 			cartorio.cadastrarEleitor("Gabi", num5, num5);
 
-			cartorio.cadastrarPartido(13, "PT");
+			cartorio.cadastrarPartido("Partido dos Trabalhadores", "PT", 13);
 			cartorio.cadastrarCandidato(num1, "Carol", 13, num1);
 			cartorio.cadastrarCandidato(num2, "Jorge", 13, num2);
 			cartorio.cadastrarCandidato(num3, "Julia", 13, num3);

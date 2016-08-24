@@ -18,7 +18,7 @@ public class TesteCandidato {
 		cartorio = new FachadaCartorio();
 
 		cartorio.cadastrarEleitor("Jorge", 123, 12345);
-		cartorio.cadastrarPartido(13, "PT");
+		cartorio.cadastrarPartido("Partido dos Trabalhadores", "PT", 13);
 	}
 
 	@Test

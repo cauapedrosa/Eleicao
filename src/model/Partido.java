@@ -6,12 +6,14 @@ import exceptions.ExceptionMsg;
 
 public class Partido {
 	private String nome;
+	private String sigla;
 	private int numero;
 	private Candidato candidatoPrefeito;
 	private ArrayList<Candidato> candidatosVereador;
 
-	public Partido(int numero, String nome) {
+	public Partido(String nome, String sigla, int numero) {
 		this.nome = nome;
+		this.sigla = sigla;
 		this.numero = numero;
 		this.candidatosVereador = new ArrayList<Candidato>();
 	}
@@ -20,8 +22,24 @@ public class Partido {
 		return nome;
 	}
 
+	public void setNome(String nome) {
+		this.sigla = nome;
+	}
+
+	public String getSigla() {
+		return sigla;
+	}
+
+	public void setSigla(String sigla) {
+		this.sigla = sigla;
+	}
+
 	public int getNumero() {
 		return numero;
+	}
+
+	public void setNumero(int numero) {
+		this.numero = numero;
 	}
 
 	public Candidato getCandidatoPrefeito() {

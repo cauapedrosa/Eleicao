@@ -191,23 +191,26 @@ public class FachadaCartorio {
 		return listaEleitores;
 	}
 
-	public void cadastrarPartido(int numeroPartido, String nomePartido) throws ExceptionMsg {
+	public void cadastrarPartido(String nomePartido, String siglaPartido, int numeroPartido)
+			throws ExceptionMsg {
 		Partido partido = getPartido(numeroPartido);
+
 		if (partidos.contains(partido))
 			throw new ExceptionMsg("Partido já cadastrado");
-		if (numeroPartido > 0 && nomePartido != null) {
-			partido = new Partido(numeroPartido, nomePartido);
-			this.partidos.add(partido);
-		} else {
-			throw new ExceptionMsg("Partido Inválido");
-		}
+		if (numeroPartido > 0 && nomePartido != null)
+			throw new ExceptionMsg("Numero do Partido Inválido");
+		if (siglaPartido.length() >= 5)
+			throw new ExceptionMsg("Sigla inválida");
+
+		partido = new Partido(nomePartido, siglaPartido, numeroPartido);
+		this.partidos.add(partido);
 	}
 
-	public Partido getPartido(int numeroPartido) throws ExceptionMsg {
+	public Partido getPartido(int numPartido) throws ExceptionMsg {
 		try {
 			for (int cont = 0; cont < this.partidos.size(); cont++) {
 				Partido partido = this.partidos.get(cont);
-				if (partido.getNumero() == numeroPartido) {
+				if (partido.getNumero() == numPartido) {
 					return partido;
 				}
 			}
@@ -362,7 +365,7 @@ public class FachadaCartorio {
 		eleitor.setZona(zona);
 	}
 
-	public void setNumeroDoCandidato(int cpf, int numero) throws ExceptionMsg {
+	public void setNumeroDoCandidato(int cpf, int numero) throws Exception {
 		Candidato candidato = getCandidatoNumero(numero);
 		if (candidato == null)
 			throw new ExceptionMsg("Candidato Invalido");
@@ -371,7 +374,7 @@ public class FachadaCartorio {
 		candidato.setNumero(numero);
 	}
 
-	public void setPartidoDoCandidato(int cpf, int numPartido) throws ExceptionMsg {
+	public void setPartidoDoCandidato(int cpf, int numPartido) throws Exception {
 		Candidato candidato = getCandidatoCPF(cpf);
 		Partido partido = getPartido(numPartido);
 
@@ -385,9 +388,24 @@ public class FachadaCartorio {
 		candidato.setPartido(partido);
 	}
 
-	public void alterarLocalDeUmaZona(int numZona, String localizacao) throws ExceptionMsg {
+	public void alterarLocalDeUmaZona(int numZona, String localizacao) throws Exception {
 		Zona zona = getZona(numZona);
 		zona.setLocalizacao(localizacao);
+	}
+
+	public void alterarNumeroPartido(int numPartido, int novoNumPartido) throws Exception {
+		Partido partido = getPartido(numPartido);
+		partido.setNumero(numPartido);
+	}
+
+	public void alterarNomePartido(int numPartido, String novoNomePartido) throws Exception {
+		Partido partido = getPartido(numPartido);
+		partido.setNome(novoNomePartido);
+	}
+
+	public void alterarSiglaPartido(int numPartido, String novaSiglaPartido) throws Exception {
+		Partido partido = getPartido(numPartido);
+		partido.setSigla(novaSiglaPartido);
 	}
 
 }
