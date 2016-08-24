@@ -1,0 +1,7 @@
+24/Ago
+Diagrama de Classes Atualizado
+
+23/Ago
+Versão Final da Primeira Fase
+
+O Projeto pode Ser Encontrado em https://github.com/cauapedrosa/Eleicao
