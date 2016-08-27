@@ -3,21 +3,21 @@ package view;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
-import excecoes.ExceptionInvalidInput;
+import excecoes.ExcecaoEntradaInvalida;
 
 public class GUI {
 
-	public static int inputInt(String msg) throws ExceptionInvalidInput {
+	public static int inputInt(String msg) throws ExcecaoEntradaInvalida {
 		String input = JOptionPane.showInputDialog(msg);
 		if (input == null)
-			throw new ExceptionInvalidInput();
+			throw new ExcecaoEntradaInvalida();
 		return Integer.parseInt(input);
 	}
 
-	public static String inputStr(String msg) throws ExceptionInvalidInput {
+	public static String inputStr(String msg) throws ExcecaoEntradaInvalida {
 		String input = JOptionPane.showInputDialog(msg);
 		if (input == null)
-			throw new ExceptionInvalidInput();
+			throw new ExcecaoEntradaInvalida();
 		return input;
 	}
 

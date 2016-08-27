@@ -39,6 +39,14 @@ public class Eleitor {
 		this.municipio = municipio;
 	}
 
+	public ZonaEleitoral getZona() {
+		return zona;
+	}
+
+	public Secao getSecao() {
+		return secao;
+	}
+
 	public String getNome() {
 		return nome;
 	}
@@ -55,12 +63,8 @@ public class Eleitor {
 		return zona.getNumero();
 	}
 
-	public ZonaEleitoral getZona() {
-		return zona;
-	}
-
-	public Secao getSecao() {
-		return secao;
+	public int getNumSecao() {
+		return secao.getNumero();
 	}
 
 	public String getEndereco() {

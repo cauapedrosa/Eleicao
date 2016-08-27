@@ -20,6 +20,10 @@ public class Secao implements ISecao {
 		}
 	}
 
+	public void limparEleitores() {
+		eleitores.clear();
+	}
+
 	public int getNumero() {
 		return this.numero;
 	}
@@ -36,4 +40,5 @@ public class Secao implements ISecao {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 }

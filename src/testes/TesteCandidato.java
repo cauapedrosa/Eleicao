@@ -5,7 +5,6 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import exceptions.ExceptionMsg;
 import modelo.Candidato;
 import modelo.FachadaCartorioEleitoral;
 
@@ -14,7 +13,7 @@ public class TesteCandidato {
 	private FachadaCartorioEleitoral cartorio;
 
 	@Before
-	public void configura() throws ExceptionMsg {
+	public void configura() throws Exception {
 		cartorio = new FachadaCartorioEleitoral();
 
 		cartorio.cadastrarEleitor("Jorge", 123, 12345);
@@ -32,7 +31,7 @@ public class TesteCandidato {
 
 			cartorio.cadastrarCandidato(cpf, nome, numPartido, numero);
 			assertEquals(1, cartorio.numeroDeCandidatos());
-		} catch (ExceptionMsg e) {
+		} catch (Exception e) {
 		}
 	}
 
@@ -47,7 +46,7 @@ public class TesteCandidato {
 			cartorio.cadastrarCandidato(cpf, nome, numPartido, numero);
 			Candidato candidato = cartorio.getCandidatoNumero(100);
 			assertEquals(13, candidato.getPartido().getNumero());
-		} catch (ExceptionMsg e) {
+		} catch (Exception e) {
 		}
 	}
 

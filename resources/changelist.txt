@@ -1,7 +1,11 @@
+27/Ago
+Pequenas mudanças implementadas em preparação para a implementação da Eleição
+Removida a classe ExceptionMsg - Agora usando a classe Exception com o parâmetro String em todas as ocasioes
+
 24/Ago
 Diagrama de Classes Atualizado
 
 23/Ago
-VersÃ£o Final da Primeira Fase
+Versao Final da Primeira Fase
 
 O Projeto pode Ser Encontrado em https://github.com/cauapedrosa/Eleicao

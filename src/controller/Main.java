@@ -1,6 +1,5 @@
 package controller;
 
-import exceptions.ExceptionMsg;
 import interfaces.IZonaEleitoral;
 import modelo.FachadaCartorioEleitoral;
 import view.GUI;
@@ -113,16 +112,16 @@ public class Main {
 		try {
 			int cpf = GUI.inputInt("Digite o CPF do Candidato");
 			if (fachada.getEleitor(cpf) == null) {
-				throw new ExceptionMsg("CPF Não Encontrado");
+				throw new Exception("CPF Não Encontrado");
 			}
 			String nome = fachada.getEleitor(cpf).getNome();
 			int numPartido = GUI.inputInt("Digite o Numero do Partido do Candidato");
 			if (fachada.getPartido(numPartido) == null) {
-				throw new ExceptionMsg("Partido Não Encontrado");
+				throw new Exception("Partido Não Encontrado");
 			}
 			int numero = GUI.inputInt("Digite o Numero de Candidato do Candidato");
 			if (numero == 0 || numero > 999) {
-				throw new ExceptionMsg("Numero de Candidato Inválido");
+				throw new Exception("Numero de Candidato Inválido");
 			}
 
 			fachada.cadastrarCandidato(cpf, nome, numPartido, numero);
@@ -303,9 +302,8 @@ public class Main {
 					fachada.alterarLocalDeUmaZona(numZona, localizacao);
 					break;
 				case 2:
-					// TODO Implementar Funcao
-					// fachada.limparEleitoresDasSecoes();
-					GUI.messagePopup("Funcao Ainda Não Implementada");
+					fachada.limparEleitoresDasSecoes();
+					GUI.messagePopup("");
 					break;
 				default:
 					opcaoSelecionada = 0;
@@ -374,7 +372,7 @@ public class Main {
 					String msg = "";
 					IZonaEleitoral zona = fachada.getZona(numeroZonaEleitoral);
 					if (zona == null) {
-						throw new ExceptionMsg("Nenhuma Zona Encontrada");
+						throw new Exception("Nenhuma Zona Encontrada");
 					} else {
 						msg += String.format("%d é uma Zona Existente\nLocalização: %s",
 								zona.getNumero(), zona.getLocalizacao());
@@ -410,7 +408,7 @@ public class Main {
 				case 1:
 					int numeroZona = GUI.inputInt("Digite o numero da Zona");
 					if (fachada.getZona(numeroZona) == null) {
-						throw new ExceptionMsg("Zona não Encontrada");
+						throw new Exception("Zona não Encontrada");
 					} else {
 						String listaSecoesDeUmaZona = fachada.qtdSecoesNumaZona(numeroZona);
 						GUI.messagePopup(listaSecoesDeUmaZona);
@@ -444,17 +442,15 @@ public class Main {
 					break;
 				case 1:
 					int cpf = GUI.inputInt("Digite o CPF do Eleitor que deseja procurar");
-					String msg = "";
 					if (fachada.getEleitor(cpf) == null) {
-						throw new ExceptionMsg("Nenhum Eleitor Encontrado");
+						throw new Exception("Nenhum Eleitor Encontrado");
 					} else {
-						// fachada.getEleitor(cpf)
-						msg += String.format(
+						String msg = String.format(
 								"Nome: %s\n" + "CPF: %d \n" + "Titulo: %d \n" + "Zona: %03d \n"
 										+ "Secao: %02d \n" + "Endereco: %s \n" + "Municipio: %s \n",
 								fachada.getEleitor(cpf).getNome(), fachada.getEleitor(cpf).getCpf(),
 								fachada.getEleitor(cpf).getTitulo(),
-								fachada.getEleitor(cpf).getZona(),
+								fachada.getEleitor(cpf).getNumZona(),
 								fachada.getEleitor(cpf).getSecao(),
 								fachada.getEleitor(cpf).getEndereco(),
 								fachada.getEleitor(cpf).getMunicipio());
@@ -491,7 +487,7 @@ public class Main {
 				case 1:
 					int num = GUI.inputInt("Digite o Numero do Partido que deseja procurar");
 					if (fachada.getPartido(num) == null) {
-						throw new ExceptionMsg("Nenhum Partido Encontrado");
+						throw new Exception("Nenhum Partido Encontrado");
 					} else {
 						GUI.messagePopup(String.format("%d é um Partido Existente. \n Nome: %s",
 								num, fachada.getPartido(num).getNome()));
@@ -527,7 +523,7 @@ public class Main {
 				case 1:
 					int num = GUI.inputInt("Digite o Numero do Candidato que deseja procurar");
 					if (fachada.getCandidatoNumero(num) == null) {
-						throw new ExceptionMsg("Nenhum Candidato Encontrado");
+						throw new Exception("Nenhum Candidato Encontrado");
 					} else {
 						GUI.messagePopup(String.format("%d é um Candidato Existente. \n Nome: %s",
 								num, fachada.getCandidatoNumero(num).getNome()));

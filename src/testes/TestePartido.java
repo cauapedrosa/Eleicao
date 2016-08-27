@@ -5,7 +5,6 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import exceptions.ExceptionMsg;
 import modelo.Candidato;
 import modelo.Eleitor;
 import modelo.FachadaCartorioEleitoral;
@@ -31,7 +30,7 @@ public class TestePartido {
 		try {
 			cartorio.cadastrarPartido("Partido dos Trabalhadores", "PT", 13);
 			cartorio.cadastrarPartido("Partido dos Trabalhadores", "PT", 13);
-		} catch (ExceptionMsg e) {
+		} catch (Exception e) {
 			assertEquals(1, cartorio.numeroDePartidos());
 		}
 	}
@@ -51,7 +50,7 @@ public class TestePartido {
 			cartorio.cadastrarPartido("Partido dos Trabalhadores", "PT", 13);
 			cartorio.cadastrarPartido("Partido do Movimento Democrático Brasileiro", "PMDB", 13);
 			fail();
-		} catch (ExceptionMsg e) {
+		} catch (Exception e) {
 		}
 
 	}

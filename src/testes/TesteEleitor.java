@@ -5,7 +5,6 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import exceptions.ExceptionMsg;
 import modelo.Eleitor;
 import modelo.FachadaCartorioEleitoral;
 import modelo.ZonaEleitoral;
@@ -22,7 +21,7 @@ public class TesteEleitor {
 	}
 
 	@Test
-	public void CadastraEleitor() throws ExceptionMsg {
+	public void CadastraEleitor() throws Exception {
 		cartorio.cadastrarEleitor("Carol", 173043550, 113352414);
 		assertEquals(1, cartorio.numeroDeEleitores());
 	}
@@ -32,7 +31,7 @@ public class TesteEleitor {
 		try {
 			cartorio.cadastrarEleitor("Carol", 173043550, 113352414);
 			cartorio.cadastrarEleitor("Jorge", 173043550, 256128806);
-		} catch (ExceptionMsg e) {
+		} catch (Exception e) {
 			assertEquals(1, cartorio.numeroDeEleitores());
 		}
 	}
@@ -42,7 +41,7 @@ public class TesteEleitor {
 		try {
 			cartorio.cadastrarEleitor("Carol", 173043550, 113352414);
 			cartorio.cadastrarEleitor("Jorge", 173043550, 256128806);
-		} catch (ExceptionMsg e) {
+		} catch (Exception e) {
 			assertEquals(1, cartorio.numeroDeEleitores());
 		}
 	}
@@ -57,7 +56,7 @@ public class TesteEleitor {
 	}
 
 	@Test
-	public void AtribuiEnderecoAEleitor() throws ExceptionMsg {
+	public void AtribuiEnderecoAEleitor() throws Exception {
 		cartorio.cadastrarEleitor("Carol", 173043550, 113352414);
 	}
 }
