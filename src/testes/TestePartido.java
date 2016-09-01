@@ -63,11 +63,10 @@ public class TestePartido {
 		int numeroPartido = 13;
 		String nomePartido = "Partido dos Trabalhadores";
 		String siglaPartido = "PT";
-		int numCandidato = 100;
 
 		cartorio.cadastrarEleitor(nome, cpf, titulo);
 		cartorio.cadastrarPartido(nomePartido, siglaPartido, numeroPartido);
-		cartorio.cadastrarCandidato(cpf, nome, numeroPartido, numCandidato);
+		cartorio.cadastrarCandidatoPrefeito(cpf, nome, numeroPartido);
 
 		Partido partido = cartorio.getPartido(13);
 		Candidato candidato = cartorio.getCandidatoNumero(100);
@@ -83,14 +82,13 @@ public class TestePartido {
 		int numeroPartido = 13;
 		String nomePartido = "Partido dos Trabalhadores";
 		String siglaPartido = "PT";
-		int numCandidato = 100;
 
 		cartorio.cadastrarEleitor(nome, cpf, titulo);
 		cartorio.cadastrarPartido(nomePartido, siglaPartido, numeroPartido);
-		cartorio.cadastrarCandidato(cpf, nome, numeroPartido, numCandidato);
+		cartorio.cadastrarCandidatoPrefeito(cpf, nome, numeroPartido);
 
 		Partido partido = cartorio.getPartido(13);
-		Candidato candidato = cartorio.getCandidatoNumero(100);
+		Candidato candidato = cartorio.getCandidatoCPF(cpf);
 		Eleitor eleitor = cartorio.getEleitor(cpf);
 
 		assertEquals(candidato.getCpf(), eleitor.getCpf());
@@ -105,8 +103,8 @@ public class TestePartido {
 		cartorio.cadastrarEleitor("Carol", 123, 123);
 		cartorio.cadastrarEleitor("Jorge", 999, 999);
 		cartorio.cadastrarPartido("Partido dos Trabalhadores", "PT", 13);
-		cartorio.cadastrarCandidato(123, "Carol", 13, 100);
-		cartorio.cadastrarCandidato(999, "Jorge", 13, 50);
+		cartorio.cadastrarCandidatoPrefeito(123, "Carol", 13);
+		cartorio.cadastrarCandidatoPrefeito(999, "Jorge", 13);
 
 		Partido partido = cartorio.getPartido(13);
 		Candidato candidatoPrefeito = cartorio.getCandidatoCPF(123);
@@ -135,11 +133,11 @@ public class TestePartido {
 			cartorio.cadastrarEleitor("Gabi", num5, num5);
 
 			cartorio.cadastrarPartido("Partido dos Trabalhadores", "PT", 13);
-			cartorio.cadastrarCandidato(num1, "Carol", 13, num1);
-			cartorio.cadastrarCandidato(num2, "Jorge", 13, num2);
-			cartorio.cadastrarCandidato(num3, "Julia", 13, num3);
-			cartorio.cadastrarCandidato(num4, "Amanda", 13, num4);
-			cartorio.cadastrarCandidato(num5, "Gabi", 13, num5);
+			cartorio.cadastrarCandidatoPrefeito(num1, "Carol", 13);
+			cartorio.cadastrarCandidatoPrefeito(num2, "Jorge", 13);
+			cartorio.cadastrarCandidatoPrefeito(num3, "Julia", 13);
+			cartorio.cadastrarCandidatoPrefeito(num4, "Amanda", 13);
+			cartorio.cadastrarCandidatoPrefeito(num5, "Gabi", 13);
 
 			Partido partido = cartorio.getPartido(13);
 			Candidato candidato1 = cartorio.getCandidatoCPF(num1);

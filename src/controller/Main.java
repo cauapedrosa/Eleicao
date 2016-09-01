@@ -15,30 +15,53 @@ public class Main {
 
 			if (opcaoSelecionada != null) {
 				switch (opcaoSelecionada) {
-				case "Cadastrar Zona":
+				case "Menu de Cadastros":
+					menuCadastros();
+					break;
+				case "Menu de Eleicoes":
+					menuEleicoes();
+				}
+			} else {
+				GUI.messagePopup("Encerrando Programa \nCodigo 501");
+				loopFlag = false;
+			}
+		}
+
+	}
+
+	private static void menuCadastros() throws Exception {
+
+		boolean loopFlag = true;
+		while (loopFlag) {
+			int opcaoSelecionada = GUI
+					.inputInt("Digite o Número da Operação que deseja realizar: \n"
+							+ "1 - Cadastrar Zona\n" + "2 - Cadastrar Seção\n"
+							+ "3 - Cadastrar Eleitor\n" + "4 - Cadastrar Partido\n"
+							+ "5 - Cadastrar Candidato\n" + "-------------------------\n"
+							+ "6 - Editar Cadastros\n" + "7 - Verificar Cadastros\n" + "0 - Sair");
+
+			if (opcaoSelecionada != 0) {
+				switch (opcaoSelecionada) {
+				case 1:
 					cadastrarZona();
 					break;
-				case "Cadastrar Seção":
+				case 2:
 					cadastrarSecao();
 					break;
-				case "Cadastrar Eleitor":
+				case 3:
 					cadastrarEleitor();
 					break;
-				case "Cadastrar Partido":
+				case 4:
 					cadastraPartido();
 					break;
-				case "Cadastrar Candidato":
+				case 5:
 					cadastraCandidato();
 					break;
-				case "Editar Cadastros":
+				case 6:
 					editarCadastros();
 					break;
-				case "Verificar Cadastros":
+				case 7:
 					verificarCadastros();
-					break;
-				default:
-					GUI.messagePopup("Encerrando programa \nCaso 502");
-					loopFlag = false;
 					break;
 				}
 			} else {
@@ -124,7 +147,7 @@ public class Main {
 				throw new Exception("Numero de Candidato Inválido");
 			}
 
-			fachada.cadastrarCandidato(cpf, nome, numPartido, numero);
+			fachada.cadastrarCandidatoPrefeito(cpf, nome, numPartido);
 
 			GUI.printToConsole(String.format(
 					"Candidato Cadastrado: %s \nCPF: %d \nNumero do Candidato: %d \nNumero do Partido: %d\n"
@@ -160,9 +183,6 @@ public class Main {
 					break;
 				case 4:
 					atualizarCadastroZonaSecao();
-					break;
-				default:
-					opcaoSelecionada = 0;
 					break;
 				}
 			}
@@ -205,9 +225,6 @@ public class Main {
 					String endereco = GUI.inputStr("Insira o Endereco do Eleitor");
 					fachada.setEnderecoDoEleitor(cpf, endereco);
 					break;
-				default:
-					opcaoSelecionada = 0;
-					break;
 				}
 			}
 		} catch (Exception e) {
@@ -243,9 +260,6 @@ public class Main {
 					String novaSiglaPartido = ("Digite a Nova Sigla do Partido");
 					fachada.alterarSiglaPartido(numPartido, novaSiglaPartido);
 					break;
-				default:
-					opcaoSelecionada = 0;
-					break;
 				}
 			}
 		} catch (Exception e) {
@@ -275,9 +289,6 @@ public class Main {
 					int numero = GUI.inputInt("Digite o Novo Numero do Candidato");
 					fachada.setNumeroDoCandidato(cpf, numero);
 					break;
-				default:
-					opcaoSelecionada = 0;
-					break;
 				}
 			}
 		} catch (Exception e) {
@@ -304,9 +315,6 @@ public class Main {
 				case 2:
 					fachada.limparEleitoresDasSecoes();
 					GUI.messagePopup("");
-					break;
-				default:
-					opcaoSelecionada = 0;
 					break;
 				}
 			}
@@ -342,9 +350,6 @@ public class Main {
 					break;
 				case 5:
 					verificarCandidato();
-					break;
-				default:
-					opcaoSelecionada = 0;
 					break;
 				}
 			}
@@ -382,9 +387,6 @@ public class Main {
 				case 2:
 					String listaZonas = fachada.listarZonas();
 					GUI.messagePopup(listaZonas);
-				default:
-					loopFlag = false;
-					break;
 				}
 			}
 		} catch (Exception e) {
@@ -417,9 +419,6 @@ public class Main {
 				case 2:
 					String listaSecoes = fachada.listarTodasSecoes();
 					GUI.messagePopup(listaSecoes);
-				default:
-					loopFlag = false;
-					break;
 				}
 			}
 		} catch (Exception e) {
@@ -448,10 +447,10 @@ public class Main {
 						String msg = String.format(
 								"Nome: %s\n" + "CPF: %d \n" + "Titulo: %d \n" + "Zona: %03d \n"
 										+ "Secao: %02d \n" + "Endereco: %s \n" + "Municipio: %s \n",
-								fachada.getEleitor(cpf).getNome(), fachada.getEleitor(cpf).getCpf(),
+								fachada.getEleitor(cpf).getNome(), cpf,
 								fachada.getEleitor(cpf).getTitulo(),
 								fachada.getEleitor(cpf).getNumZona(),
-								fachada.getEleitor(cpf).getSecao(),
+								fachada.getEleitor(cpf).getNumSecao(),
 								fachada.getEleitor(cpf).getEndereco(),
 								fachada.getEleitor(cpf).getMunicipio());
 						GUI.messagePopup(msg);
@@ -460,9 +459,6 @@ public class Main {
 				case 2:
 					String listaEleitores = fachada.listarEleitores();
 					GUI.messagePopup(listaEleitores);
-					break;
-				default:
-					loopFlag = false;
 					break;
 				}
 			}
@@ -497,9 +493,6 @@ public class Main {
 					String listaPartidos = fachada.listarPartidos();
 					GUI.messagePopup(listaPartidos);
 					break;
-				default:
-					loopFlag = false;
-					break;
 				}
 			}
 		} catch (Exception e) {
@@ -533,9 +526,6 @@ public class Main {
 					String listaCandidatos = fachada.listarCandidatos();
 					GUI.messagePopup(listaCandidatos);
 					break;
-				default:
-					loopFlag = false;
-					break;
 				}
 			}
 		} catch (Exception e) {
@@ -543,4 +533,7 @@ public class Main {
 		}
 	}
 
+	private static void menuEleicoes() {
+		GUI.errorMsgPopup("Função Ainda Não Implementada");
+	}
 }

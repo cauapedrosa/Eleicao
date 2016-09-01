@@ -27,9 +27,8 @@ public class TesteCandidato {
 			int cpf = 123;
 			String nome = "Jorge";
 			int numPartido = 13;
-			int numero = 100;
 
-			cartorio.cadastrarCandidato(cpf, nome, numPartido, numero);
+			cartorio.cadastrarCandidatoPrefeito(cpf, nome, numPartido);
 			assertEquals(1, cartorio.numeroDeCandidatos());
 		} catch (Exception e) {
 		}
@@ -41,9 +40,8 @@ public class TesteCandidato {
 			int cpf = 123;
 			String nome = "Jorge";
 			int numPartido = 13;
-			int numero = 100;
 
-			cartorio.cadastrarCandidato(cpf, nome, numPartido, numero);
+			cartorio.cadastrarCandidatoPrefeito(cpf, nome, numPartido);
 			Candidato candidato = cartorio.getCandidatoNumero(100);
 			assertEquals(13, candidato.getPartido().getNumero());
 		} catch (Exception e) {

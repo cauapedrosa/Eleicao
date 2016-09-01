@@ -8,10 +8,12 @@ import interfaces.IZonaEleitoral;
 public class Secao implements ISecao {
 	private int numero;
 	private ArrayList<Eleitor> eleitores;
+	private Urna urna;
 
 	public Secao(int numero, ZonaEleitoral zona) {
 		this.numero = numero;
 		this.eleitores = new ArrayList<Eleitor>();
+		this.urna = new Urna(this);
 	}
 
 	public void insereEleitor(Eleitor eleitor) {
@@ -39,6 +41,10 @@ public class Secao implements ISecao {
 	public IZonaEleitoral getZona() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	public Urna getUrna() {
+		return urna;
 	}
 
 }

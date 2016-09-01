@@ -1,3 +1,7 @@
+31/Ago
+Sistema de Urnas implementado, em fase alpha.
+Diagrama de Classes Remodelado
+
 27/Ago
 Pequenas mudanças implementadas em preparação para a implementação da Eleição
 Removida a classe ExceptionMsg - Agora usando a classe Exception com o parâmetro String em todas as ocasioes

@@ -8,11 +8,11 @@ import interfaces.CartorioEleitoral;
 import interfaces.ISecao;
 
 public class FachadaCartorioEleitoral implements CartorioEleitoral {
-	private ArrayList<ZonaEleitoral> zonas;
-	private ArrayList<Eleitor> eleitores;
-	private ArrayList<Secao> secoes;
-	private ArrayList<Partido> partidos;
-	private ArrayList<Candidato> candidatos;
+	public ArrayList<ZonaEleitoral> zonas;
+	public ArrayList<Eleitor> eleitores;
+	public ArrayList<Secao> secoes;
+	public ArrayList<Partido> partidos;
+	public ArrayList<Candidato> candidatos;
 
 	public FachadaCartorioEleitoral() {
 		this.zonas = new ArrayList<ZonaEleitoral>();
@@ -169,19 +169,19 @@ public class FachadaCartorioEleitoral implements CartorioEleitoral {
 		return listaEleitores;
 	}
 
-	public void cadastrarPartido(String nomePartido, String siglaPartido, int numeroPartido)
+	public void cadastrarPartido(String nomePartido, String siglaPartido, int numpartido)
 			throws Exception {
-		Partido partido = getPartido(numeroPartido);
+		Partido partido = getPartido(numpartido);
 
 		if (partidos.contains(partido))
 			throw new Exception("Partido já cadastrado");
-		if (numeroPartido == 0 || numeroPartido > 99)
+		if (numpartido == 0 || numpartido > 99)
 			throw new Exception(
 					"Numero do Partido Inválido " + "(Igual a 0 ou Mais de Dois Digitos)");
 		if (siglaPartido.length() >= 5)
 			throw new Exception("Sigla inválida (Mais de Dois Digitos)");
 
-		partido = new Partido(nomePartido, siglaPartido, numeroPartido);
+		partido = new Partido(nomePartido, siglaPartido, numpartido);
 		this.partidos.add(partido);
 	}
 
@@ -215,10 +215,9 @@ public class FachadaCartorioEleitoral implements CartorioEleitoral {
 		return listaPartidos;
 	}
 
-	public void cadastrarCandidato(int cpf, String nome, int numPartido, int numero)
-			throws Exception {
+	public void cadastrarCandidatoPrefeito(int cpf, String nome, int numPartido) throws Exception {
 
-		if (candidatos.contains(getCandidatoNumero(numero)))
+		if (candidatos.contains(getCandidatoCPF(cpf)))
 			throw new Exception("Candidato Já Cadastrado");
 
 		Eleitor eleitor = getEleitor(cpf);
@@ -229,7 +228,28 @@ public class FachadaCartorioEleitoral implements CartorioEleitoral {
 		if (partido.getNumero() != numPartido)
 			throw new Exception("Partido não encontrado");
 
-		Candidato candidato = new Candidato(numero, eleitor, partido);
+		Candidato candidato = new Candidato(numPartido, eleitor, partido);
+		candidato.setEleitor(eleitor);
+		this.candidatos.add(candidato);
+
+	}
+
+	public void cadastrarCandidatoVereador(int cpf, String nome, int numPartido, int numCandidato)
+			throws Exception {
+
+		if (candidatos.contains(getCandidatoCPF(cpf)))
+			throw new Exception("Candidato Já Cadastrado");
+
+		Eleitor eleitor = getEleitor(cpf);
+		Partido partido = getPartido(numPartido);
+
+		if (eleitor.getCpf() != cpf)
+			throw new Exception("Eleitor não encontrado");
+		if (partido.getNumero() != numPartido)
+			throw new Exception("Partido não encontrado");
+
+		Candidato candidato = new Candidato(numPartido, eleitor, partido);
+		candidato.setNumero(numCandidato);
 		candidato.setEleitor(eleitor);
 		this.candidatos.add(candidato);
 
@@ -403,6 +423,31 @@ public class FachadaCartorioEleitoral implements CartorioEleitoral {
 			Secao secao = secoes.get(i);
 			secao.limparEleitores();
 		}
+	}
+
+	// ######################################
+
+	public void abrirUrnas() {
+		for (int cont = 0; cont < this.secoes.size(); cont++) {
+			Secao secao = this.secoes.get(cont);
+			Urna urna = secao.getUrna();
+			urna.abrirUrna();
+		}
+		return;
+	}
+
+	public void vota(Urna urna, Eleitor eleitor, int votoPref, int votoVere) throws Exception {
+//		if (urna.eleitorVotou(eleitor)) {
+//			return;
+//		} else {
+			urna.cadastraVotos(votoPref, votoVere);
+//		}
+	}
+
+	public int contaVotosPrefeito(Urna urna, int numPrefeito) {
+		int qtdVotos;
+		qtdVotos = urna.contaVotosPrefeito(numPrefeito);
+		return qtdVotos;
 	}
 
 }
